@@ -1,0 +1,2845 @@
+{UTF-8}
+Cost per QALY=
+	QALY gained results
+	+BC total cost results+CC total cost results+CRC total cost results+Total cost of MCED testing results\
+		+Total LC cost results
+	~	$
+	~		|
+
+"Histo -ve BC MCED"=
+	"BC Biopsy & histological assessment MCED"*0
+	~	
+	~		|
+
+"HIsto -ve CC MCED"=
+	Histological assessement CC MCED*0
+	~	
+	~		|
+
+Biopsy required BC MCED=
+	Specialist visit BC MCED*1
+	~	
+	~		|
+
+Histological assessement CC MCED= INTEG (
+	"+ve Colposcopy MCED"-"CC +ve biopsy MCED"-"HIsto -ve CC MCED",
+		0)
+	~	Patients
+	~		|
+
+"Specialist no furth. CC MCED"=
+	Specialist visit to confirm CC*0
+	~	
+	~		|
+
+Histological examination after MCED CRC= INTEG (
+	"+ve colo MCED"-"+ve histo CRC MCED"-"Histo -ve MCED CRC",
+		0)
+	~	Patients
+	~		|
+
+"Specialist no furth. LC MCED"=
+	Specialist visit to confirm LC*0
+	~	
+	~		|
+
+"Eligible for lung cancer SOC (current or former smoker aged 55-74; 50-74 if ATSI)"= \
+		INTEG (
+	"-ve triage MCED LC"+NF LC biopsy after MCED+No action required+No findings+No findings LDCT after MCED\
+		+No LC rate 0+Pop eligible LC+SND LC+"Specialist no furth. LC MCED"-MCED LC uptake-\
+		Uptake LC,
+		1000)
+	~	Patients
+	~		|
+
+Specilaist no furth MCED BC=
+	Specialist visit BC MCED*0
+	~	
+	~		|
+
+"Coloposcopy -ve MCED"=
+	Colonoscopy after MCED*0
+	~	
+	~		|
+
+Specialist visit BC MCED= INTEG (
+	"Mammo +ve MCED"-Biopsy required BC MCED-Specilaist no furth MCED BC,
+		0)
+	~	Patients
+	~		|
+
+"Colposcopy -ve MCED"=
+	Colposcopy after MCED*0
+	~	
+	~		|
+
+Mammography after MCED= INTEG (
+	Mammo MCED-"Mammo +ve MCED"-"Mammo -ve MCED",
+		0)
+	~	Patients
+	~		|
+
+"Mammo +ve MCED"=
+	Mammography after MCED*0.873
+	~	
+	~		|
+
+"Eligible for cervical cancer SOC (people with cervix aged 25-74 years)"= INTEG (
+	"Colposcopy -ve MCED"+"Colposcopy -ve"+"HIsto -ve CC MCED"-HPV uptake+"LBC -ve CC"-MCED CC uptake\
+		+No CC to SOC+Pop eligible CC+SND CC+"Specialist no furth. CC MCED",
+		1000)
+	~	Patients
+	~		|
+
+"Mammo -ve MCED"=
+	Mammography after MCED*0
+	~	
+	~		|
+
+Colonoscopy after MCED= INTEG (
+	CRC Colo MCED-"+ve colo MCED"-"Coloposcopy -ve MCED",
+		0)
+	~	Patients
+	~		|
+
+Specialist visit to confirm CRC= INTEG (
+	SD BC to CRC+SD CC to CRC+SD CRC+SD LC to CRC-CRC Colo MCED-"Specialist no furth. CRC MCED"\
+		,
+		0)
+	~	Patients
+	~		|
+
+Specialist visit to confirm LC= INTEG (
+	SD BC to LC+SD CC to LC+SD CRC to LC+SD LC-LDCT MCED-"Specialist no furth. LC MCED",
+		0)
+	~	Patients
+	~		|
+
+"Specialist no furth. BC MCED"=
+	Specialist visit to confirm BC*0
+	~	
+	~		|
+
+Specialist CRC= INTEG (
+	Attended specialist-Colonoscopy uptake,
+		0)
+	~	Patients
+	~		|
+
+Eligible for CRC SOC= INTEG (
+	"Colonoscopy -ve"+"Coloposcopy -ve MCED"+"Confirm -ve MCED CRC"+"Histo -ve MCED CRC"\
+		+"iFOBT -ve"-iFOBT uptake rate+No colonoscopy+No CRC rate+Pop eligible CRC+SND CRC+\
+		"Specialist no furth. CRC MCED"-MCED CRC uptake,
+		1000)
+	~	Patients
+	~		|
+
+"BC Biopsy & histological assessment MCED"= INTEG (
+	Biopsy required BC MCED-"+ve biopsy BC MCED"-"Histo -ve BC MCED",
+		0)
+	~	Patients
+	~		|
+
+Specialist visit to confirm BC= INTEG (
+	SD BC+SD CC to BC+SD CRC to BC+SD LC to BC-Mammo MCED-"Specialist no furth. BC MCED"\
+		,
+		0)
+	~	Patients
+	~		|
+
+"Specialist no furth. CRC MCED"=
+	Specialist visit to confirm CRC*0
+	~	
+	~		|
+
+Colposcopy after MCED= INTEG (
+	Colposcopy MCED-"+ve Colposcopy MCED"-"Colposcopy -ve MCED",
+		0)
+	~	Patients
+	~		|
+
+Specialist visit to confirm CC= INTEG (
+	SD BC to CC+SD CC+SD CRC to CC+SD LC to CC-Colposcopy MCED-"Specialist no furth. CC MCED"\
+		,
+		0)
+	~	Patients
+	~		|
+
+"Histo -ve MCED CRC"=
+	Histological examination after MCED CRC*0
+	~	
+	~		|
+
+Eligible for breast cancer SOC= INTEG (
+	"6m follow-up -ve BC"+"Confirm -ve BC"+"Histo -ve BC MCED"+"Mammo -ve MCED"+"Mammo -ve"\
+		+No BC to SOC+Pop eligible BC+SND BC+"Specialist no furth. BC MCED"+Specilaist no furth MCED BC\
+		-Mammo uptake-MCED BC uptake,
+		1000)
+	~	Patients
+	~		|
+
+"Biopsy & histological assessment BC"= INTEG (
+	"6m follow-up +ve BC"+Biopsy required BC+"Confirm +ve BC"-Diagnosed BC rate-No BC rate\
+		,
+		0)
+	~	Patients
+	~		|
+
+Mammography= INTEG (
+	Mammo uptake+SD ineligible to BC-"Mammo -ve"-Mammo indeterminate-"Mammo +ve"-"Mamo -ve to MCED"\
+		,
+		0)
+	~	Patients
+	~		|
+
+Biopsy required BC=
+	Specialist visit BC*1
+	~	
+	~		|
+
+"+ve iFOBT"= INTEG (
+	Positivity rate-Attended specialist-No colonoscopy-Pts opting out colonoscopy,
+		0)
+	~	Patients
+	~		|
+
+Histological examination CRC= INTEG (
+	"Colonoscopy +ve"-Diagnosed CRC rate-No CRC rate,
+		0)
+	~	Patients
+	~		|
+
+No CRC rate=
+	Histological examination CRC*0.9326
+	~	
+	~		|
+
+Specialist visit BC= INTEG (
+	"Mammo +ve"-Biopsy required BC,
+		0)
+	~	Patients
+	~		|
+
+"Mammo +ve"=
+	Mammography*0.111
+	~	
+	~		|
+
+No LC rate 0=
+	"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy)"*0
+	~	
+	~		|
+
+Attended specialist=
+	"+ve iFOBT"*0.856
+	~	
+	~		|
+
+Colonoscopy= INTEG (
+	-"Colonoscopy +ve"+"Colonoscopy -ve"+Colonoscopy uptake+"Confirm +ve MCED",
+		0)
+	~	Patients
+	~		|
+
+Colonoscopy uptake=
+	Specialist CRC*1
+	~	
+	~		|
+
+"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy)"= INTEG (
+	Specialist to biopsy-Diagnosed LC rate-No LC rate 0,
+		0)
+	~	Patients
+	~		|
+
+CC S3=
+	"Diagnosed/staged CC"*0.125
+	~	Patients
+	~		|
+
+Biopsy cost 0=
+	"Biopsy & histological assessment BC"*655.65
+	~	
+	~		|
+
+"Follow-up cost BC 0"=
+	"Short-term follow-up 6mths"*89.7
+	~	
+	~		|
+
+Stage I QALY 0=
+	Stage I*0.81
+	~	QALYs
+	~		|
+
+GP to LBC CC=
+	Additional clinician visit*1
+	~	
+	~		|
+
+LDCT cost 0=
+	LDCT 2yrs*299.4
+	~	$
+	~		|
+
+HPV cost 0=
+	HPV with partial genotyping*35
+	~	$
+	~		|
+
+LDCT cost 2 0=
+	LDCT 3 months*299
+	~	$
+	~		|
+
+MCED CRC cost 0=
+	MCED test CRC*500
+	~	$
+	~		|
+
+LDCT cost 3 0=
+	LDCT 12 months*299
+	~	$
+	~		|
+
+CRC MCED testing 0=
+	MCED test CRC*1000
+	~	$
+	~		|
+
+"5-year stage I survival"=
+	Stage I combined results*1
+	~	
+	~		|
+
+"5-year stage II survival"=
+	Stage II combined results*1
+	~	
+	~		|
+
+"5-year stage III survival"=
+	Stage III combined results*1
+	~	
+	~		|
+
+"5-year stage IV survival"=
+	Stage IV combined results*1
+	~	
+	~		|
+
+CC total cost results=
+	Clinician cost CC 0+Colposcopy cost 0+HPV cost 0+Reflex LBC cost 0+Tissue biopsy CC cost 0
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+CRC surgery cost 0=
+	Histological examination CRC*164.85
+	~	$
+	~		|
+
+Pop eligible BC=
+	0
+	~	
+	~		|
+
+Pop eligible CC=
+	0
+	~	
+	~		|
+
+CRC total cost results=
+	Colonoscopy cost 0+CRC surgery cost 0+iFOBT cost 0+MCED CRC cost 0
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+Pop eligible LC=
+	0
+	~	Patients
+	~		|
+
+Mammography cost 0=
+	Mammography*58.45
+	~	
+	~		|
+
+Tissue biopsy CC cost 0=
+	Histological assessment CC*164.85
+	~	$
+	~		|
+
+LC biopsy cost 0=
+	"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy)"*620.1
+	~	$
+	~		|
+
+Stage II combined results=
+	Stage II+Stage II MCED
+	~	Patients
+	~		|
+
+QALY gained results=
+	Stage I QALY 0+Stage II QALY 0+Stage III QALY 0+Stage IV QALY 0
+	~	QALYs
+	~		~	:SUPPLEMENTARY 
+	|
+
+Stage II QALY 0=
+	Stage II*0.06
+	~	QALYs
+	~		|
+
+BC MCED testing 0=
+	MCED test BC*1000
+	~	$
+	~		|
+
+Specialist visit due MCED 0=
+	Specialist visit*89.7
+	~	$
+	~		|
+
+Reflex LBC cost 0=
+	Reflex LBC*46
+	~	$
+	~		|
+
+MCED LC cost 0=
+	MCED test LC*500
+	~	$
+	~		|
+
+Total OS=
+	"5-year stage I survival"+"5-year stage II survival"+"5-year stage III survival"+"5-year stage IV survival"
+	~	
+	~		~	:SUPPLEMENTARY 
+	|
+
+Colposcopy cost 0=
+	Specialist for colposcopy*70.3
+	~	$
+	~		|
+
+BC total cost results=
+	Biopsy cost 0+"Follow-up cost BC 0"+Mammography cost 0
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+LC specialist cost 0=
+	Rapid access to specialist*89.7
+	~	$
+	~		|
+
+Stage I combined results=
+	Stage I+Stage I MCED
+	~	Patients
+	~		|
+
+CC MCED testing 0=
+	MCED test CC*1000
+	~	$
+	~		|
+
+Clinician cost CC 0=
+	Additional clinician visit*89.7
+	~	$
+	~		|
+
+Pop ineligible SOC=
+	0
+	~	
+	~		|
+
+Pop eligible CRC=
+	0
+	~	
+	~		|
+
+iFOBT cost 0=
+	iFOBT*100
+	~	$
+	~		|
+
+Unknown combined results=
+	Unknown+Unknown MCED
+	~	Patients
+	~		~	:SUPPLEMENTARY 
+	|
+
+Ineligible for any SOC screening= INTEG (
+	Pop ineligible SOC+SND ineligible-MCED ineligible uptake,
+		1000)
+	~	Patients
+	~		|
+
+Colonoscopy cost 0=
+	Colonoscopy*368
+	~	$
+	~		|
+
+Total cost of MCED testing results=
+	BC MCED testing 0+CC MCED testing 0+CRC MCED testing 0+Ineligible pop MCED testing 0\
+		+LC MCED testing 0+Specialist visit due MCED 0
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+Stage III combined results=
+	Stage III+Stage III MCED
+	~	Patients
+	~		|
+
+Total LC cost results=
+	LDCT cost 0+LDCT cost 2 0+LDCT cost 3 0+LC specialist cost 0+LC biopsy cost 0+MCED LC cost 0
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+Stage IV QALY 0=
+	Stage IV*0.2
+	~	QALYs
+	~		|
+
+Stage III QALY 0=
+	Stage III*0.4
+	~	QALYs
+	~		|
+
+LC MCED testing 0=
+	MCED test LC*1000
+	~	$
+	~		|
+
+Stage IV combined results=
+	Stage IV+Stage IV MCED
+	~	Patients
+	~		|
+
+Ineligible pop MCED testing 0=
+	"MCED test ineligible pop."*1000
+	~	$
+	~		|
+
+"+ve biopsy BC MCED"=
+	"BC Biopsy & histological assessment MCED"*1
+	~	
+	~		|
+
+"+ve histo CRC MCED"=
+	Histological examination after MCED CRC*1
+	~	
+	~		|
+
+"+ve biopsy MCED"=
+	"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy) MCED"*1
+	~	
+	~		|
+
+"+ve colo MCED"=
+	Colonoscopy after MCED*0.655
+	~	
+	~		|
+
+"+ve Colposcopy MCED"=
+	Colposcopy after MCED*0.134
+	~	
+	~		|
+
+"+ve LDCT MCED"=
+	LDCT after MCED*0.473
+	~	
+	~		|
+
+CRC MCED S2=
+	"Diagnosed/staged (MRI/CT/PET) CRC MCED"*0.293
+	~	
+	~		|
+
+CRC MCED S3=
+	"Diagnosed/staged (MRI/CT/PET) CRC MCED"*0.1
+	~	
+	~		|
+
+CRC MCED S4=
+	"Diagnosed/staged (MRI/CT/PET) CRC MCED"*0.046
+	~	
+	~		|
+
+LDCT MCED=
+	Specialist visit to confirm LC*1
+	~	
+	~		|
+
+SD BC=
+	MCED test BC*0.265
+	~	
+	~		|
+
+SD LC=
+	MCED test LC*0.091
+	~	
+	~		|
+
+SD LC to BC=
+	MCED test LC*0
+	~	
+	~		|
+
+SD LC to CC=
+	MCED test LC*0
+	~	
+	~		|
+
+SD LC to CRC=
+	MCED test LC*0
+	~	
+	~		|
+
+Mammo MCED=
+	Specialist visit to confirm BC*1
+	~	
+	~		|
+
+BC MCED S1=
+	"Diagnosed/staged BC MCED"*0.318
+	~	
+	~		|
+
+BC MCED S2=
+	"Diagnosed/staged BC MCED"*0.452
+	~	
+	~		|
+
+BC MCED S3=
+	"Diagnosed/staged BC MCED"*0.162
+	~	
+	~		|
+
+BC MCED S4=
+	"Diagnosed/staged BC MCED"*0.014
+	~	
+	~		|
+
+CC MCED S4=
+	"Diagnosed/staged CC MCED"*0.06
+	~	
+	~		|
+
+LC MCED S2=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD) MCED"*0.26
+	~	
+	~		|
+
+"Diagnosed/staged CC MCED"= INTEG (
+	"CC +ve biopsy MCED"-CC MCED S1-CC MCED S2-CC MCED S3-CC MCED S4-CC unknown MCED,
+		0)
+	~	Patients
+	~		|
+
+Stage II MCED= INTEG (
+	BC MCED S2+CC MCED S2+CRC MCED S2+LC MCED S2,
+		0)
+	~	Patients
+	~		|
+
+"Diagnosed/staged (MRI/CT/PET) CRC MCED"= INTEG (
+	"+ve histo CRC MCED"-CRC MCED S1-CRC MCED S2-CRC MCED S3-CRC MCED S4-CRC unknown MCED\
+		,
+		0)
+	~	Patients
+	~		|
+
+SD BC to CRC=
+	MCED test BC*0
+	~	
+	~		|
+
+BC unknown MCED=
+	"Diagnosed/staged BC MCED"*0.055
+	~	
+	~		|
+
+"Staging LC (CT/PET-CT/tissue diagnosis MD) MCED"= INTEG (
+	"+ve biopsy MCED"-DS1 MCED-LC MCED S2-LC MCED S3-LC MCED S4-LC unknown MCED,
+		0)
+	~	Patients
+	~		|
+
+"CC +ve biopsy MCED"=
+	Histological assessement CC MCED*1
+	~	
+	~		|
+
+CC MCED S1=
+	"Diagnosed/staged CC MCED"*0.648
+	~	
+	~		|
+
+CC MCED S2=
+	"Diagnosed/staged CC MCED"*0.234
+	~	
+	~		|
+
+CC MCED S3=
+	"Diagnosed/staged CC MCED"*0.023
+	~	
+	~		|
+
+"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy) MCED"= INTEG (
+	"+ve LDCT MCED"-"+ve biopsy MCED"-NF LC biopsy after MCED,
+		0)
+	~	Patients
+	~		|
+
+LDCT after MCED= INTEG (
+	LDCT MCED-"+ve LDCT MCED"-No findings LDCT after MCED,
+		0)
+	~	Patients
+	~		|
+
+SD CRC to LC=
+	MCED test CRC*0
+	~	
+	~		|
+
+Stage II combined=
+	Stage II+Stage II MCED
+	~	
+	~		~	:SUPPLEMENTARY 
+	|
+
+LC MCED S4=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD) MCED"*0.127
+	~	
+	~		|
+
+Stage IV MCED= INTEG (
+	BC MCED S4+CC MCED S4+CRC MCED S4+LC MCED S4,
+		0)
+	~	Patients
+	~		|
+
+Colposcopy MCED=
+	Specialist visit to confirm CC*1
+	~	
+	~		|
+
+Stage III combined=
+	Stage III+Stage III MCED
+	~	
+	~		~	:SUPPLEMENTARY 
+	|
+
+CC unknown MCED=
+	"Diagnosed/staged CC MCED"*0.09
+	~	
+	~		|
+
+SD CC=
+	MCED test CC*0.057
+	~	
+	~		|
+
+No findings LDCT after MCED=
+	LDCT after MCED*0
+	~	
+	~		|
+
+Stage I combined=
+	Stage I+Stage I MCED
+	~	
+	~		~	:SUPPLEMENTARY 
+	|
+
+CRC unknown MCED=
+	"Diagnosed/staged (MRI/CT/PET) CRC MCED"*0.123
+	~	
+	~		|
+
+CRC Colo MCED=
+	Specialist visit to confirm CRC*1
+	~	
+	~		|
+
+CRC MCED S1=
+	"Diagnosed/staged (MRI/CT/PET) CRC MCED"*0.438
+	~	
+	~		|
+
+Stage I MCED= INTEG (
+	BC MCED S1+CC MCED S1+CRC MCED S1+DS1 MCED,
+		0)
+	~	Patients
+	~		|
+
+LC MCED S3=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD) MCED"*0.111
+	~	
+	~		|
+
+SD CC to CRC=
+	MCED test CC*0
+	~	
+	~		|
+
+SD CC to LC=
+	MCED test CC*0
+	~	
+	~		|
+
+SD CRC=
+	MCED test CRC*0.13
+	~	
+	~		|
+
+Unknown MCED= INTEG (
+	BC unknown MCED+CC unknown MCED+CRC unknown MCED+LC unknown MCED,
+		0)
+	~	Patients
+	~		|
+
+SD BC to LC=
+	MCED test BC*0
+	~	
+	~		|
+
+Stage III MCED= INTEG (
+	BC MCED S3+CC MCED S3+CRC MCED S3+LC MCED S3,
+		0)
+	~	Patients
+	~		|
+
+SD CC to BC=
+	MCED test CC*0
+	~	
+	~		|
+
+SD CRC to CC=
+	MCED test CRC*0
+	~	
+	~		|
+
+NF LC biopsy after MCED=
+	"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy) MCED"*0
+	~	
+	~		|
+
+DS1 MCED=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD) MCED"*0.218
+	~	
+	~		|
+
+"Diagnosed/staged BC MCED"= INTEG (
+	"+ve biopsy BC MCED"-BC MCED S1-BC MCED S2-BC MCED S3-BC MCED S4-BC unknown MCED,
+		0)
+	~	Patients
+	~		|
+
+SD CRC to BC=
+	MCED test CRC*0
+	~	
+	~		|
+
+MCED test BC= INTEG (
+	MCED BC uptake-SD BC-SD BC to CC-SD BC to CRC-SD BC to LC-SD other than BC-SND BC,
+		0)
+	~	Patients
+	~		|
+
+Unknown combined=
+	Unknown+Unknown MCED
+	~	
+	~		~	:SUPPLEMENTARY 
+	|
+
+SD BC to CC=
+	MCED test BC*0
+	~	
+	~		|
+
+Stage IV combined=
+	Stage IV+Stage IV MCED
+	~	
+	~		~	:SUPPLEMENTARY 
+	|
+
+LC unknown MCED=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD) MCED"*0.285
+	~	
+	~		|
+
+LDCT 2yrs= INTEG (
+	"6m LDCT to 2yrs"+SD ineligible to LC+Uptake LC-HR LC-"Low & moderate risk patients"\
+		-LR LC-MR LC-No findings,
+		0)
+	~	Patients
+	~		|
+
+HPV with partial genotyping= INTEG (
+	HPV uptake+SD ineligible to CC-HPV to LBC-"Self-collected GP visit"-Unsatisfactory HPV\
+		,
+		0)
+	~	Patients
+	~		|
+
+MCED test LC= INTEG (
+	MCED LC uptake-SD LC-SD LC to BC-SD LC to CC-SD LC to CRC-SD other than LC-SND LC,
+		0)
+	~	Patients
+	~		|
+
+iFOBT= INTEG (
+	iFOBT uptake rate+SD ineligible to CRC-"-ve iFOBT to MCED"-Positivity rate-"iFOBT -ve"\
+		,
+		0)
+	~	Patients
+	~		|
+
+MCED test CRC= INTEG (
+	MCED CRC uptake-SD CRC-SD CRC to BC-SD CRC to CC-SD CRC to LC-SD other than CRC-SND CRC\
+		,
+		0)
+	~	Patients
+	~		|
+
+Specialist for colposcopy= INTEG (
+	"6wks to specialist CC"-"Colposcopy +ve"-"Colposcopy -ve"+"LBC +ve CC",
+		0)
+	~	Patients
+	~		|
+
+MCED test CC= INTEG (
+	MCED CC uptake-SD CC-SD CC to BC-SD CC to CRC-SD CC to LC-SD other than CC-SND CC,
+		0)
+	~	Patients
+	~		|
+
+"+ve triage MCED LC"=
+	Confirmatory MCED test LC*0.25
+	~	
+	~		|
+
+"-ve iFOBT to MCED"=
+	iFOBT*0
+	~	
+	~		|
+
+"-ve triage MCED LC"=
+	Confirmatory MCED test LC*0.25
+	~	
+	~		|
+
+"Low & moderate risk patients"=
+	LDCT 2yrs*0
+	~	
+	~		|
+
+Confirmatory MCED test LC= INTEG (
+	"Low & moderate risk patients"-"+ve triage MCED LC"-"-ve triage MCED LC",
+		0)
+	~	Patients
+	~		|
+
+"Mamo -ve to MCED"=
+	Mammography*0
+	~	
+	~		|
+
+No action required=
+	Rapid access to specialist*0
+	~	
+	~		|
+
+"Confirm +ve BC"=
+	Confirmatory MCED BC*0
+	~	
+	~		|
+
+"Confirm +ve MCED"=
+	Confirmatory MCED CRC*0
+	~	
+	~		|
+
+"Confirm -ve MCED CRC"=
+	Confirmatory MCED CRC*0
+	~	
+	~		|
+
+Confirmatory MCED BC= INTEG (
+	"Mamo -ve to MCED"-"Confirm +ve BC"-"Confirm -ve BC",
+		0)
+	~	Patients
+	~		|
+
+Confirmatory MCED CRC= INTEG (
+	"-ve iFOBT to MCED"+Pts opting out colonoscopy-"Confirm +ve MCED"-"Confirm -ve MCED CRC"\
+		,
+		0)
+	~	Patients
+	~		|
+
+"Confirm -ve BC"=
+	Confirmatory MCED BC*0
+	~	Patients
+	~		|
+
+Rapid access to specialist= INTEG (
+	"+ve triage MCED LC"+"6m LDCT to specialist"+HR LC+LDCT 3m specialist-Specialist to biopsy\
+		-No action required,
+		0)
+	~	Patients
+	~		|
+
+Pts opting out colonoscopy=
+	"+ve iFOBT"*0
+	~	
+	~		|
+
+QALY gained=
+	Stage I QALY+Stage II QALY+Stage III QALY+Stage IV QALY
+	~	
+	~		~	:SUPPLEMENTARY 
+	|
+
+Stage III QALY=
+	Stage III*0.4
+	~	
+	~		|
+
+Stage IV QALY=
+	Stage IV*0.2
+	~	
+	~		|
+
+Stage I QALY=
+	Stage I*0.81
+	~	
+	~		|
+
+Stage II QALY=
+	Stage II*0.06
+	~	
+	~		|
+
+BC MCED testing=
+	MCED test BC*1000
+	~	$
+	~		|
+
+SD ineligible to CC=
+	"MCED test ineligible pop."*0
+	~	
+	~		|
+
+SD ineligible to CRC=
+	"MCED test ineligible pop."*0
+	~	
+	~		|
+
+SD ineligible to LC=
+	"MCED test ineligible pop."*0
+	~	
+	~		|
+
+CRC MCED testing=
+	MCED test CRC*1000
+	~	$
+	~		|
+
+"MCED test ineligible pop."= INTEG (
+	MCED ineligible uptake-SD ineligible-SD ineligible to BC-SD ineligible to CC-SD ineligible to CRC\
+		-SD ineligible to LC-SND ineligible,
+		0)
+	~	Patients
+	~		|
+
+CC MCED testing=
+	MCED test CC*1000
+	~	$
+	~		|
+
+Clinician cost CC=
+	Additional clinician visit*86
+	~	$
+	~		|
+
+LC MCED testing=
+	MCED test LC*1000
+	~	$
+	~		|
+
+CC total cost=
+	Clinician cost CC+Colposcopy cost+HPV cost+Reflex LBC cost+Tissue biopsy CC cost
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+Specialist visit due MCED=
+	Specialist visit*86
+	~	$
+	~		|
+
+Tissue biopsy CC cost=
+	Histological assessment CC*141
+	~	$
+	~		|
+
+Ineligible pop MCED testing=
+	"MCED test ineligible pop."*1000
+	~	$
+	~		|
+
+Colposcopy cost=
+	Specialist for colposcopy*69
+	~	$
+	~		|
+
+HPV cost=
+	HPV with partial genotyping*35
+	~	$
+	~		|
+
+Total cost of MCED testing=
+	BC MCED testing+CC MCED testing+CRC MCED testing+Ineligible pop MCED testing+LC MCED testing\
+		+Specialist visit due MCED
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+Reflex LBC cost=
+	Reflex LBC*35
+	~	$
+	~		|
+
+SD ineligible to BC=
+	"MCED test ineligible pop."*0
+	~	
+	~		|
+
+"Follow-up cost BC"=
+	"Short-term follow-up 6mths"*86
+	~	
+	~		|
+
+Mammography cost=
+	Mammography*150
+	~	
+	~		|
+
+Biopsy cost=
+	"Biopsy & histological assessment BC"*750
+	~	
+	~		|
+
+BC total cost=
+	Biopsy cost+"Follow-up cost BC"+Mammography cost
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+LC biopsy cost=
+	"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy)"*141
+	~	$
+	~		|
+
+LC S1=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD)"*0.117
+	~	Patients
+	~		|
+
+LDCT cost=
+	LDCT 2yrs*299.4
+	~	$
+	~		|
+
+LDCT cost 2=
+	LDCT 3 months*302
+	~	$
+	~		|
+
+LDCT cost 3=
+	LDCT 12 months*302
+	~	$
+	~		|
+
+Diagnosed LC rate=
+	"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy)"*0.11
+	~	
+	~		|
+
+CC S4=
+	"Diagnosed/staged CC"*0.122
+	~	Patients
+	~		|
+
+CC unknown=
+	"Diagnosed/staged CC"*0.09
+	~	Patients
+	~		|
+
+CC S1=
+	"Diagnosed/staged CC"*0.378
+	~	Patients
+	~		|
+
+CC S2=
+	"Diagnosed/staged CC"*0.285
+	~	Patients
+	~		|
+
+LC S2=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD)"*0.065
+	~	Patients
+	~		|
+
+Uptake LC=
+	"Eligible for lung cancer SOC (current or former smoker aged 55-74; 50-74 if ATSI)"*\
+		0.6
+	~	Patients
+	~		|
+
+Colonoscopy cost=
+	Colonoscopy*1300
+	~	$
+	~		|
+
+LC S4=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD)"*0.422
+	~	Patients
+	~		|
+
+LC unknown=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD)"*0.285
+	~	Patients
+	~		|
+
+LC specialist cost=
+	Rapid access to specialist*87
+	~	$
+	~		|
+
+MCED LC cost=
+	MCED test LC*500
+	~	$
+	~		|
+
+CRC surgery cost=
+	Histological examination CRC*2000
+	~	$
+	~		|
+
+CRC total cost=
+	Colonoscopy cost+CRC surgery cost+iFOBT cost+MCED CRC cost
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+LC S3=
+	"Staging LC (CT/PET-CT/tissue diagnosis MD)"*0.112
+	~	Patients
+	~		|
+
+Total LC cost=
+	LDCT cost+LDCT cost 2+LDCT cost 3+LC specialist cost+LC biopsy cost+MCED LC cost
+	~	$
+	~		~	:SUPPLEMENTARY 
+	|
+
+MCED CRC cost=
+	MCED test CRC*500
+	~	$
+	~		|
+
+iFOBT cost=
+	iFOBT*100
+	~	$
+	~		|
+
+Diagnosed BC rate=
+	"Biopsy & histological assessment BC"*0.086
+	~	
+	~		|
+
+"Diagnosed/staged CC"= INTEG (
+	Diagnosed CC rate-CC S1-CC S2-CC S3-CC S4-CC unknown,
+		0)
+	~	Patients
+	~		|
+
+Diagnosed CC rate=
+	Histological assessment CC*0.021
+	~	
+	~		|
+
+"Diagnosed/staged (MRI/CT/PET) CRC"= INTEG (
+	Diagnosed CRC rate-CRC S1-CRC S2-CRC S3-CRC S4-CRC unknown,
+		0)
+	~	Patients
+	~		|
+
+Diagnosed CRC rate=
+	Histological examination CRC*0.0674
+	~	
+	~		|
+
+"Staging LC (CT/PET-CT/tissue diagnosis MD)"= INTEG (
+	Diagnosed LC rate-LC S1-LC S2-LC S3-LC S4-LC unknown,
+		0)
+	~	Patients
+	~		|
+
+No CC= INTEG (
+	No CC rate-No CC to SOC,
+		0)
+	~	Patients
+	~		|
+
+BC S1=
+	"Diagnosed/staged BC"*0.301
+	~	
+	~		|
+
+BC S2=
+	"Diagnosed/staged BC"*0.363
+	~	Patients
+	~		|
+
+BC S3=
+	"Diagnosed/staged BC"*0.24
+	~	Patients
+	~		|
+
+BC S4=
+	"Diagnosed/staged BC"*0.041
+	~	Patients
+	~		|
+
+BC unknown=
+	"Diagnosed/staged BC"*0.055
+	~	Patients
+	~		|
+
+CRC S1=
+	"Diagnosed/staged (MRI/CT/PET) CRC"*0.221
+	~	Patients
+	~		|
+
+CRC S2=
+	"Diagnosed/staged (MRI/CT/PET) CRC"*0.243
+	~	Patients
+	~		|
+
+No BC= INTEG (
+	No BC rate-No BC to SOC,
+		0)
+	~	Patients
+	~		|
+
+No BC rate=
+	"Biopsy & histological assessment BC"*0.914
+	~	
+	~		|
+
+No BC to SOC=
+	No BC*1
+	~	
+	~		|
+
+Stage II= INTEG (
+	BC S2+CC S2+CRC S2+LC S2,
+		0)
+	~	Patients
+	~		|
+
+No CC rate=
+	Histological assessment CC*0
+	~	Patients
+	~		|
+
+No CC to SOC=
+	No CC*1
+	~	
+	~		|
+
+Stage IV= INTEG (
+	BC S4+CC S4+CRC S4+LC S4,
+		0)
+	~	Patients
+	~		|
+
+CRC S3=
+	"Diagnosed/staged (MRI/CT/PET) CRC"*0.236
+	~	Patients
+	~		|
+
+CRC S4=
+	"Diagnosed/staged (MRI/CT/PET) CRC"*0.177
+	~	
+	~		|
+
+CRC unknown=
+	"Diagnosed/staged (MRI/CT/PET) CRC"*0.123
+	~	
+	~		|
+
+"Diagnosed/staged BC"= INTEG (
+	Diagnosed BC rate-BC S1-BC S2-BC S3-BC S4-BC unknown,
+		0)
+	~	Patients
+	~		|
+
+Stage III= INTEG (
+	BC S3+CC S3+CRC S3+LC S3,
+		0)
+	~	Patients
+	~		|
+
+Stage I= INTEG (
+	BC S1+CC S1+CRC S1+LC S1,
+		0)
+	~	Patients
+	~		|
+
+Unknown= INTEG (
+	BC unknown+CC unknown+CRC unknown+LC unknown,
+		0)
+	~	Patients
+	~		|
+
+Histological assessment CC= INTEG (
+	"Colposcopy +ve"-Diagnosed CC rate-No CC rate,
+		0)
+	~	Patients
+	~		|
+
+No colonoscopy=
+	"+ve iFOBT"*0.144
+	~	
+	~		|
+
+Positivity rate=
+	iFOBT*0.0309
+	~	
+	~		|
+
+LR LC=
+	LDCT 2yrs*0
+	~	
+	~		|
+
+LDCT 3 months= INTEG (
+	MR LC-"3m LDCT to 6m"-LDCT 3m specialist,
+		0)
+	~	Patients
+	~		|
+
+SD other than BC=
+	MCED test BC*0.01
+	~	
+	~		|
+
+LDCT 12 months= INTEG (
+	"3m LDCT to 6m"+"6m LDCT to 2yrs"+"6m LDCT to specialist"+LR LC,
+		0)
+	~	Patients
+	~		|
+
+SD other than CRC=
+	MCED test CRC*0.01
+	~	
+	~		|
+
+SD other than LC=
+	MCED test LC*0
+	~	
+	~		|
+
+MR LC=
+	LDCT 2yrs*0
+	~	
+	~		|
+
+Specialist visit= INTEG (
+	SD ineligible+SD other than BC+SD other than CC+SD other than CRC+SD other than LC,
+		0)
+	~	Patients
+	~		|
+
+HR LC=
+	LDCT 2yrs*0
+	~	
+	~		|
+
+SD other than CC=
+	MCED test CC*0.01
+	~	
+	~		|
+
+No findings=
+	LDCT 2yrs*0
+	~	Patients
+	~		|
+
+MCED CC uptake=
+	"Eligible for cervical cancer SOC (people with cervix aged 25-74 years)"*0.376*0.25
+	~	
+	~		|
+
+MCED ineligible uptake=
+	Ineligible for any SOC screening*0
+	~	
+	~		|
+
+SND BC=
+	MCED test BC*0.736
+	~	
+	~		|
+
+SND CC=
+	MCED test CC*0.943
+	~	
+	~		|
+
+SND CRC=
+	MCED test CRC*0.87
+	~	
+	~		|
+
+MCED BC uptake=
+	Eligible for breast cancer SOC*0.525*0.25
+	~	
+	~		|
+
+MCED CRC uptake=
+	Eligible for CRC SOC*0.4*1
+	~	
+	~		|
+
+MCED LC uptake=
+	"Eligible for lung cancer SOC (current or former smoker aged 55-74; 50-74 if ATSI)"*\
+		0.4*1
+	~	
+	~		|
+
+SD ineligible=
+	"MCED test ineligible pop."*0
+	~	
+	~		|
+
+SND LC=
+	MCED test LC*0.909
+	~	
+	~		|
+
+SND ineligible=
+	"MCED test ineligible pop."*0
+	~	
+	~		|
+
+"6m follow-up +ve BC"=
+	"Short-term follow-up 6mths"*0.038
+	~	
+	~		|
+
+"6m follow-up -ve BC"=
+	"Short-term follow-up 6mths"*0.962
+	~	
+	~		|
+
+"6m LDCT to specialist"=
+	LDCT 12 months*0.07
+	~	
+	~		|
+
+"6wks to specialist CC"=
+	"Collect new sample(6-12 wks)"*0.0434167
+	~	
+	~		|
+
+Additional clinician visit= INTEG (
+	"Self-collected GP visit"-GP to LBC CC,
+		0)
+	~	Patients
+	~		|
+
+"Collect new sample(6-12 wks)"= INTEG (
+	"6wks to specialist CC"+Unsatisfactory HPV+Unsatisfactory LBC,
+		0)
+	~	Patients
+	~		|
+
+"Colonoscopy +ve"=
+	Colonoscopy*0.136
+	~	
+	~		|
+
+"Colonoscopy -ve"=
+	Colonoscopy*0.864
+	~	
+	~		|
+
+"Colposcopy +ve"=
+	Specialist for colposcopy*0.391
+	~	
+	~		|
+
+"Colposcopy -ve"=
+	Specialist for colposcopy*0
+	~	
+	~		|
+
+"LBC -ve CC"=
+	Reflex LBC*0
+	~	
+	~		|
+
+"Short-term follow-up 6mths"= INTEG (
+	"6m follow-up +ve BC"+"6m follow-up -ve BC"+Mammo indeterminate,
+		0)
+	~	Patients
+	~		|
+
+Specialist to biopsy=
+	Rapid access to specialist*0
+	~	
+	~		|
+
+HPV to LBC=
+	HPV with partial genotyping*0
+	~	
+	~		|
+
+HPV uptake=
+	"Eligible for cervical cancer SOC (people with cervix aged 25-74 years)"*0.624
+	~	
+	~		|
+
+"iFOBT -ve"=
+	iFOBT*0.969
+	~	
+	~		|
+
+Unsatisfactory LBC=
+	Reflex LBC*0
+	~	
+	~		|
+
+"LBC +ve CC"=
+	Reflex LBC*1
+	~	
+	~		|
+
+LDCT 3m specialist=
+	DELAY FIXED( LDCT 3 months*1 , 3 , LDCT 3 months )
+	~	
+	~		|
+
+"Mammo -ve"=
+	Mammography*0.525
+	~	
+	~		|
+
+Mammo indeterminate=
+	Mammography*0
+	~	
+	~		|
+
+Mammo uptake=
+	Eligible for breast cancer SOC*0.475
+	~	Patients
+	~		|
+
+Reflex LBC= INTEG (
+	GP to LBC CC+HPV to LBC-"LBC +ve CC"-"LBC -ve CC"-Unsatisfactory LBC,
+		0)
+	~	Patients
+	~		|
+
+"Self-collected GP visit"=
+	HPV with partial genotyping*0.207
+	~	
+	~		|
+
+Unsatisfactory HPV=
+	HPV with partial genotyping*0
+	~	
+	~		|
+
+"3m LDCT to 6m"=
+	LDCT 3 months*0
+	~	
+	~		|
+
+"6m LDCT to 2yrs"=
+	LDCT 12 months*0.93
+	~	
+	~		|
+
+iFOBT uptake rate=
+	Eligible for CRC SOC*0.6
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 10
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Model structure
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,68,2
+10,1,"Eligible for lung cancer SOC (current or former smoker aged 55-74; 50-74 if ATSI)",1408,282,90,94,3,3,0,4,-1,0,0,0,0-0-0,192-255-193,|||0-0-0,0,0,0,0,0,0
+10,2,Eligible for CRC SOC,1544,937,74,92,3,3,0,4,-1,0,0,0,0-0-0,192-255-193,|||0-0-0,0,0,0,0,0,0
+10,3,Eligible for breast cancer SOC,1502,1384,76,107,3,3,0,4,-1,0,0,0,0-0-0,192-255-193,|||0-0-0,0,0,0,0,0,0
+10,4,"Eligible for cervical cancer SOC (people with cervix aged 25-74 years)",1528,1795,77,101,3,3,0,4,-1,0,0,0,0-0-0,192-255-193,|||0-0-0,0,0,0,0,0,0
+10,5,Ineligible for any SOC screening,1556,2399,86,114,3,3,0,4,-1,0,0,0,0-0-0,192-255-193,|||0-0-0,0,0,0,0,0,0
+10,6,iFOBT,1734,815,45,33,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Mammography,1739,1329,64,37,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,HPV with partial genotyping,1740,1701,50,30,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,9,29,2,100,0,0,22,0,192,0,-1--1--1,,1|(1664,929)|
+1,10,29,6,4,0,0,22,0,192,0,-1--1--1,,1|(1717,884)|
+1,11,123,3,100,0,0,22,0,192,0,-1--1--1,,1|(1600,1314)|
+1,12,123,7,4,0,0,22,0,192,0,-1--1--1,,1|(1654,1314)|
+1,13,113,4,100,0,0,22,0,192,0,-1--1--1,,1|(1622,1701)|
+1,14,113,8,4,0,0,22,0,192,0,-1--1--1,,1|(1671,1701)|
+10,15,LDCT 2yrs,1689,419,82,58,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,16,Rapid access to specialist,2290,401,64,54,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,17,Colonoscopy,2068,845,50,24,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,18,Histological examination CRC,2356,815,65,59,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,19,107,17,100,0,0,22,0,192,0,-1--1--1,,1|(2148,845)|
+1,20,107,18,4,0,0,22,0,192,0,-1--1--1,,1|(2241,845)|
+10,21,Stage I,3549,389,168,132,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,22,Stage II,3563,778,169,134,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,23,Stage III,3564,1145,178,132,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,24,Stage IV,3567,1468,178,127,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,25,Unknown,3578,1778,181,132,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,26,"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy)",2549,393,122,68,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,27,121,16,100,0,0,22,0,192,0,-1--1--1,,1|(2363,393)|
+1,28,121,26,4,0,0,22,0,192,0,-1--1--1,,1|(2405,393)|
+11,29,0,1717,929,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,30,iFOBT uptake rate,1717,960,54,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,31,2,29,1,0,0,0,0,192,0,-1--1--1,,1|(1655,954)|
+1,32,16,121,1,0,0,0,0,192,0,-1--1--1,,1|(2378,446)|
+1,33,17,107,1,0,0,0,0,192,0,-1--1--1,,1|(2166,821)|
+10,34,Specialist visit,3584,2164,185,150,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+1,35,3,123,1,0,0,0,0,192,0,-1--1--1,,1|(1556,1300)|
+10,36,Reflex LBC,1806,1986,53,32,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,37,Specialist for colposcopy,2049,1872,62,53,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,38,"Collect new sample(6-12 wks)",1801,1845,54,32,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,39,131,8,100,0,0,22,0,192,0,-1--1--1,,1|(1713,1745)|
+1,40,131,38,4,0,0,22,0,192,0,-1--1--1,,1|(1713,1845)|
+1,41,133,36,100,0,0,22,0,192,0,-1--1--1,,1|(1787,1939)|
+1,42,133,38,4,0,0,22,0,192,0,-1--1--1,,1|(1787,1894)|
+1,43,139,36,100,0,0,22,0,192,0,-1--1--1,,1|(1878,1998)|
+1,44,139,37,4,0,0,22,0,192,0,-1--1--1,,1|(2049,1998)|
+10,45,Histological assessment CC,2100,1660,70,41,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,46,145,37,100,0,0,22,0,192,0,-1--1--1,,1|(2123,1862)|
+1,47,145,45,4,0,0,22,0,192,0,-1--1--1,,1|(2144,1778)|
+1,48,135,38,100,0,0,22,0,192,0,-1--1--1,,1|(1867,1843)|
+1,49,135,37,4,0,0,22,0,192,0,-1--1--1,,1|(1939,1843)|
+1,50,8,131,1,0,0,0,0,192,0,-1--1--1,,1|(1800,1759)|
+1,51,38,135,1,0,0,0,0,192,0,-1--1--1,,1|(1863,1821)|
+1,52,36,133,1,0,0,0,0,192,0,-1--1--1,,1|(1726,1977)|
+1,53,36,139,1,0,0,0,0,192,0,-1--1--1,,1|(1888,2025)|
+1,54,37,145,1,0,0,0,0,192,0,-1--1--1,,1|(2120,1886)|
+1,55,129,8,100,0,0,22,0,192,0,-1--1--1,,1|(1663,1725)|
+1,56,129,36,4,0,0,22,0,192,0,-1--1--1,,1|(1629,1986)|
+1,57,8,129,1,0,0,0,0,192,0,-1--1--1,,1|(1665,1743)|
+1,58,147,37,100,0,0,22,0,192,0,-1--1--1,,1|(2021,1927)|
+1,59,147,4,4,0,0,22,0,192,0,-1--1--1,,1|(1528,1938)|
+1,60,137,36,100,0,0,22,0,192,0,-1--1--1,,1|(1622,2000)|
+1,61,137,4,4,0,0,22,0,192,0,-1--1--1,,1|(1483,1945)|
+1,62,36,137,1,0,0,0,0,192,0,-1--1--1,,1|(1533,2024)|
+1,63,37,147,1,0,0,0,0,192,0,-1--1--1,,1|(2061,1892)|
+1,64,4,113,1,0,0,0,0,192,0,-1--1--1,,1|(1593,1663)|
+10,65,Additional clinician visit,1951,1720,46,32,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,66,141,8,100,0,0,22,0,192,0,-1--1--1,,1|(1805,1709)|
+1,67,141,65,4,0,0,22,0,192,0,-1--1--1,,1|(1869,1709)|
+1,68,143,65,100,0,0,22,0,192,0,-1--1--1,,1|(1955,1762)|
+1,69,143,36,4,0,0,22,0,192,0,-1--1--1,,1|(1955,1986)|
+1,70,8,141,1,0,0,0,0,192,0,-1--1--1,,1|(1809,1680)|
+10,71,LDCT 12 months,2152,190,45,33,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,72,LDCT 3 months,1957,558,45,35,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,73,117,72,100,0,0,22,0,192,0,-1--1--1,,1|(2089,533)|
+1,74,117,71,4,0,0,22,0,192,0,-1--1--1,,1|(2182,374)|
+1,75,119,71,100,0,0,22,0,192,0,-1--1--1,,1|(2060,188)|
+1,76,119,15,4,0,0,22,0,192,0,-1--1--1,,1|(2005,419)|
+1,77,149,71,100,0,0,22,0,192,0,-1--1--1,,1|(2227,183)|
+1,78,149,16,4,0,0,22,0,192,0,-1--1--1,,1|(2266,268)|
+1,79,115,72,100,0,0,22,0,192,0,-1--1--1,,1|(2023,557)|
+1,80,115,16,4,0,0,22,0,192,0,-1--1--1,,1|(2290,557)|
+1,81,71,119,1,0,0,0,0,192,0,-1--1--1,,1|(2020,161)|
+1,82,71,149,1,0,0,0,0,192,0,-1--1--1,,1|(2233,151)|
+1,83,72,117,1,0,0,0,0,192,0,-1--1--1,,1|(2059,504)|
+1,84,72,115,1,0,0,0,0,192,0,-1--1--1,,1|(2001,571)|
+1,85,111,7,100,0,0,22,0,192,0,-1--1--1,,1|(1653,1333)|
+1,86,111,3,4,0,0,22,0,192,0,-1--1--1,,1|(1598,1333)|
+1,87,7,111,1,0,0,0,0,192,0,-1--1--1,,1|(1646,1372)|
+10,88,"Biopsy & histological assessment BC",2211,1318,56,37,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,89,"Short-term follow-up 6mths",1758,1200,63,38,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,90,125,7,100,0,0,22,0,192,0,-1--1--1,,1|(1741,1285)|
+1,91,125,89,4,0,0,22,0,192,0,-1--1--1,,1|(1741,1250)|
+1,92,7,125,1,0,0,0,0,192,0,-1--1--1,,1|(1688,1274)|
+1,93,127,89,100,0,0,22,0,192,0,-1--1--1,,1|(1850,1195)|
+1,94,127,88,4,0,0,22,0,192,0,-1--1--1,,1|(2211,1195)|
+1,95,151,89,100,0,0,22,0,192,0,-1--1--1,,1|(1606,1214)|
+1,96,151,3,4,0,0,22,0,192,0,-1--1--1,,1|(1510,1248)|
+1,97,89,127,1,0,0,0,0,192,0,-1--1--1,,1|(1842,1171)|
+1,98,89,151,1,0,0,0,0,192,0,-1--1--1,,1|(1583,1171)|
+1,99,109,17,100,0,0,22,0,192,0,-1--1--1,,1|(2036,886)|
+1,100,109,2,4,0,0,22,0,192,0,-1--1--1,,1|(1824,911)|
+1,101,17,109,1,0,0,0,0,192,0,-1--1--1,,1|(2040,859)|
+1,102,105,6,100,0,0,22,0,192,0,-1--1--1,,1|(1705,858)|
+1,103,105,2,4,0,0,22,0,192,0,-1--1--1,,1|(1658,876)|
+1,104,6,105,1,0,0,0,0,192,0,-1--1--1,,1|(1704,819)|
+11,105,0,1705,876,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,106,"iFOBT -ve",1705,907,43,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,107,0,2185,845,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,108,"Colonoscopy +ve",2185,876,50,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,109,0,2036,911,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,110,"Colonoscopy -ve",2036,942,50,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,111,0,1625,1333,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,112,"Mammo -ve",1625,1364,43,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,113,0,1646,1701,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,114,HPV uptake,1646,1732,46,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,115,0,2050,557,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,116,LDCT 3m specialist,2050,588,46,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,117,0,2182,533,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,118,"3m LDCT to 6m",2246,533,58,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,119,0,2005,188,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,120,"6m LDCT to 2yrs",2059,188,46,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,121,0,2378,393,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,122,Specialist to biopsy,2378,424,58,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,123,0,1628,1314,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,124,Mammo uptake,1628,1345,54,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,125,0,1741,1271,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,126,Mammo indeterminate,1805,1271,58,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,127,0,1887,1195,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,128,"6m follow-up +ve BC",1949,1195,54,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,129,0,1629,1725,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,130,HPV to LBC,1683,1725,46,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,131,0,1713,1768,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,132,Unsatisfactory HPV,1782,1768,63,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,133,0,1787,1918,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,134,Unsatisfactory LBC,1858,1918,63,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,135,0,1885,1843,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,136,"6wks to specialist CC",1885,1874,58,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,137,0,1483,2000,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,138,"LBC -ve CC",1483,2029,46,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,139,0,1904,1998,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,140,"LBC +ve CC",1956,1998,46,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,141,0,1827,1709,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,142,"Self-collected GP visit",1827,1740,63,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,143,0,1955,1779,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,144,GP to LBC CC,1955,1808,54,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,145,0,2144,1862,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,146,"Colposcopy +ve",2215,1862,63,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,147,0,2021,1938,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,148,"Colposcopy -ve",2090,1938,63,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,149,0,2266,183,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,150,"6m LDCT to specialist",2318,183,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,151,0,1510,1214,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,152,"6m follow-up -ve BC",1570,1214,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,153,MCED test LC,925,229,109,55,3,3,0,4,-1,0,0,0,0-0-0,254-220-109,|||0-0-0,0,0,0,0,0,0
+10,154,MCED test CRC,895,885,114,56,3,3,0,4,-1,0,0,0,0-0-0,254-220-109,|||0-0-0,0,0,0,0,0,0
+10,155,MCED test BC,876,1317,120,59,3,3,0,4,-1,0,0,0,0-0-0,254-220-109,|||0-0-0,0,0,0,0,0,0
+10,156,MCED test CC,920,1744,126,64,3,3,0,4,-1,0,0,0,0-0-0,254-220-109,|||0-0-0,0,0,0,0,0,0
+10,157,"MCED test ineligible pop.",955,2355,129,66,3,3,0,4,-1,0,0,0,0-0-0,254-220-109,|||0-0-0,0,0,0,0,0,0
+1,158,160,1,100,0,0,22,0,192,0,-1--1--1,,1|(1280,261)|
+1,159,160,153,4,0,0,22,0,192,0,-1--1--1,,1|(1132,261)|
+11,160,0,1237,261,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,161,MCED LC uptake,1237,291,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,162,164,2,100,0,0,22,0,192,0,-1--1--1,,1|(1439,851)|
+1,163,164,154,4,0,0,22,0,192,0,-1--1--1,,1|(1202,851)|
+11,164,0,1402,851,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,165,MCED CRC uptake,1402,881,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,166,168,3,100,0,0,22,0,192,0,-1--1--1,,1|(1360,1285)|
+1,167,168,155,4,0,0,22,0,192,0,-1--1--1,,1|(1139,1285)|
+11,168,0,1288,1285,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,169,MCED BC uptake,1288,1315,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,170,172,4,100,0,0,22,0,192,0,-1--1--1,,1|(1369,1720)|
+1,171,172,156,4,0,0,22,0,192,0,-1--1--1,,1|(1161,1720)|
+11,172,0,1282,1720,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,173,MCED CC uptake,1282,1750,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,174,176,5,100,0,0,22,0,192,0,-1--1--1,,1|(1424,2316)|
+1,175,176,157,4,0,0,22,0,192,0,-1--1--1,,1|(1225,2316)|
+11,176,0,1372,2316,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,177,MCED ineligible uptake,1372,2347,44,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,178,201,153,100,0,0,22,0,192,0,-1--1--1,,1|(864,311)|
+1,179,201,1,4,0,0,22,0,192,0,-1--1--1,,1|(1094,346)|
+1,180,203,154,100,0,0,22,0,192,0,-1--1--1,,1|(1035,885)|
+1,181,203,2,4,0,0,22,0,192,0,-1--1--1,,1|(1255,993)|
+1,182,205,155,100,0,0,22,0,192,0,-1--1--1,,1|(1018,1364)|
+1,183,205,3,4,0,0,22,0,192,0,-1--1--1,,1|(1239,1364)|
+1,184,207,156,100,0,0,22,0,192,0,-1--1--1,,1|(1099,1784)|
+1,185,207,4,4,0,0,22,0,192,0,-1--1--1,,1|(1310,1784)|
+1,186,209,157,100,0,0,22,0,192,0,-1--1--1,,1|(964,2445)|
+1,187,209,5,4,0,0,22,0,192,0,-1--1--1,,1|(1221,2475)|
+1,188,211,157,100,0,0,22,0,192,0,-1--1--1,,1|(987,2273)|
+1,189,211,34,4,0,0,22,0,192,0,-1--1--1,,1|(2196,2250)|
+1,190,1,160,1,0,0,0,0,192,0,-1--1--1,,1|(1292,277)|
+1,191,153,201,1,0,0,0,0,192,0,-1--1--1,,1|(864,284)|
+1,192,154,203,1,0,0,0,0,192,0,-1--1--1,,1|(976,1024)|
+1,193,2,164,1,0,0,0,0,192,0,-1--1--1,,1|(1450,825)|
+1,194,3,168,1,0,0,0,0,192,0,-1--1--1,,1|(1357,1253)|
+1,195,155,205,1,0,0,0,0,192,0,-1--1--1,,1|(1041,1353)|
+1,196,4,172,1,0,0,0,0,192,0,-1--1--1,,1|(1415,1706)|
+1,197,156,207,1,0,0,0,0,192,0,-1--1--1,,1|(1117,1837)|
+1,198,5,176,1,0,0,0,0,192,0,-1--1--1,,1|(1468,2312)|
+1,199,157,209,1,0,0,0,0,192,0,-1--1--1,,1|(943,2468)|
+1,200,157,211,1,0,0,0,0,192,0,-1--1--1,,1|(1027,2279)|
+11,201,0,864,346,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,202,SND LC,864,376,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,203,0,1035,993,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,204,SND CRC,1035,1023,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,205,0,1047,1364,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,206,SND BC,1047,1394,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,207,0,1161,1784,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,208,SND CC,1161,1812,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,209,0,964,2475,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,210,SND ineligible,964,2503,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,211,0,987,2250,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,212,SD ineligible,987,2280,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,213,225,153,100,0,0,22,0,192,0,-1--1--1,,1|(725,266)|
+1,214,225,34,4,0,0,22,0,192,0,-1--1--1,,1|(627,2164)|
+1,215,227,154,100,0,0,22,0,192,0,-1--1--1,,1|(676,885)|
+1,216,227,34,4,0,0,22,0,192,0,-1--1--1,,1|(676,2164)|
+1,217,229,155,100,0,0,22,0,192,0,-1--1--1,,1|(845,1401)|
+1,218,229,34,4,0,0,22,0,192,0,-1--1--1,,1|(845,2164)|
+1,219,231,156,100,0,0,22,0,192,0,-1--1--1,,1|(739,1744)|
+1,220,231,34,4,0,0,22,0,192,0,-1--1--1,,1|(739,2164)|
+1,221,153,225,1,0,0,0,0,192,0,-1--1--1,,1|(755,291)|
+1,222,154,227,1,0,0,0,0,192,0,-1--1--1,,1|(800,871)|
+1,223,155,229,1,0,0,0,0,192,0,-1--1--1,,1|(881,1425)|
+1,224,156,231,1,0,0,0,0,192,0,-1--1--1,,1|(768,1713)|
+11,225,0,627,266,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,226,SD other than LC,627,294,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,227,0,676,955,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,228,SD other than CRC,676,983,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,229,0,845,1433,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,230,SD other than BC,876,1433,23,1,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,231,0,739,1809,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,232,SD other than CC,739,1837,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,233,235,15,100,0,0,22,0,192,0,-1--1--1,,1|(1803,444)|
+1,234,235,16,4,0,0,22,0,192,0,-1--1--1,,1|(2036,444)|
+11,235,0,1841,444,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,236,HR LC,1841,474,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,237,239,15,100,0,0,22,0,192,0,-1--1--1,,1|(1742,478)|
+1,238,239,72,4,0,0,22,0,192,0,-1--1--1,,1|(1742,558)|
+11,239,0,1742,487,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,240,MR LC,1742,517,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,241,243,15,100,0,0,22,0,192,0,-1--1--1,,1|(1793,388)|
+1,242,243,71,4,0,0,22,0,192,0,-1--1--1,,1|(2152,388)|
+11,243,0,1824,388,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,244,LR LC,1874,388,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,245,247,15,100,0,0,22,0,192,0,-1--1--1,,1|(1535,414)|
+1,246,247,1,4,0,0,22,0,192,0,-1--1--1,,1|(1458,391)|
+11,247,0,1458,414,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,248,No findings,1458,444,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,249,15,247,1,0,0,0,0,192,0,-1--1--1,,1|(1528,387)|
+1,250,15,243,1,0,0,0,0,192,0,-1--1--1,,1|(1809,378)|
+1,251,15,239,1,0,0,0,0,192,0,-1--1--1,,1|(1712,486)|
+1,252,15,235,1,0,0,0,0,192,0,-1--1--1,,1|(1816,469)|
+10,253,"+ve iFOBT",1878,803,42,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,254,261,253,100,0,0,22,0,192,0,-1--1--1,,1|(1855,853)|
+1,255,261,2,4,0,0,22,0,192,0,-1--1--1,,1|(1733,890)|
+1,256,258,6,100,0,0,22,0,192,0,-1--1--1,,1|(1704,759)|
+1,257,258,253,4,0,0,22,0,192,0,-1--1--1,,1|(1878,729)|
+11,258,0,1704,729,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,259,Positivity rate,1704,759,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,260,6,258,1,0,0,0,0,192,0,-1--1--1,,1|(1688,746)|
+11,261,0,1855,890,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,262,No colonoscopy,1855,920,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,263,253,261,1,0,0,0,0,192,0,-1--1--1,,1|(1833,868)|
+10,264,"Staging LC (CT/PET-CT/tissue diagnosis MD)",2919,180,75,57,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,265,358,26,100,0,0,22,0,192,0,-1--1--1,,1|(2580,291)|
+1,266,358,264,4,0,0,22,0,192,0,-1--1--1,,1|(2580,180)|
+1,267,392,264,100,0,0,22,0,192,0,-1--1--1,,1|(3077,134)|
+1,268,392,21,4,0,0,22,0,192,0,-1--1--1,,1|(3549,134)|
+1,269,386,264,100,0,0,22,0,192,0,-1--1--1,,1|(3053,180)|
+1,270,386,22,4,0,0,22,0,192,0,-1--1--1,,1|(3053,778)|
+1,271,384,264,100,0,0,22,0,192,0,-1--1--1,,1|(3037,219)|
+1,272,384,23,4,0,0,22,0,192,0,-1--1--1,,1|(3086,1145)|
+1,273,388,264,100,0,0,22,0,192,0,-1--1--1,,1|(3071,167)|
+1,274,388,24,4,0,0,22,0,192,0,-1--1--1,,1|(3156,1468)|
+1,275,390,264,100,0,0,22,0,192,0,-1--1--1,,1|(3047,195)|
+1,276,390,25,4,0,0,22,0,192,0,-1--1--1,,1|(3108,1778)|
+10,277,"Diagnosed/staged (MRI/CT/PET) CRC",2660,875,77,51,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,278,280,18,100,0,0,22,0,192,0,-1--1--1,,1|(2356,884)|
+1,279,280,277,4,0,0,22,0,192,0,-1--1--1,,1|(2472,903)|
+11,280,0,2356,903,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,281,Diagnosed CRC rate,2356,933,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,282,284,277,100,0,0,22,0,192,0,-1--1--1,,1|(2711,814)|
+1,283,284,21,4,0,0,22,0,192,0,-1--1--1,,1|(2711,389)|
+11,284,0,2711,798,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,285,CRC S1,2761,798,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,286,288,277,100,0,0,22,0,192,0,-1--1--1,,1|(2746,868)|
+1,287,288,22,4,0,0,22,0,192,0,-1--1--1,,1|(3083,868)|
+11,288,0,2764,868,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,289,CRC S2,2814,868,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,290,292,277,100,0,0,22,0,192,0,-1--1--1,,1|(2717,937)|
+1,291,292,23,4,0,0,22,0,192,0,-1--1--1,,1|(2717,1145)|
+11,292,0,2717,956,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,293,CRC S3,2717,986,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,294,296,277,100,0,0,22,0,192,0,-1--1--1,,1|(2634,970)|
+1,295,296,24,4,0,0,22,0,192,0,-1--1--1,,1|(2634,1468)|
+11,296,0,2634,1020,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,297,CRC S4,2634,1048,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,298,300,277,100,0,0,22,0,192,0,-1--1--1,,1|(2671,967)|
+1,299,300,25,4,0,0,22,0,192,0,-1--1--1,,1|(2671,1778)|
+11,300,0,2671,1015,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,301,CRC unknown,2727,1015,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,302,"Diagnosed/staged BC",2480,1203,68,41,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,303,No BC,2345,1405,69,24,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,304,306,88,100,0,0,22,0,192,0,-1--1--1,,1|(2252,1241)|
+1,305,306,302,4,0,0,22,0,192,0,-1--1--1,,1|(2335,1193)|
+11,306,0,2252,1193,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,307,Diagnosed BC rate,2252,1223,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,308,310,303,100,0,0,22,0,192,0,-1--1--1,,1|(2263,1409)|
+1,309,310,3,4,0,0,22,0,192,0,-1--1--1,,1|(1908,1409)|
+11,310,0,2244,1409,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,311,No BC to SOC,2244,1439,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,312,314,88,100,0,0,22,0,192,0,-1--1--1,,1|(2300,1325)|
+1,313,314,303,4,0,0,22,0,192,0,-1--1--1,,1|(2340,1357)|
+11,314,0,2340,1325,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,315,No BC rate,2340,1355,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,316,318,302,100,0,0,22,0,192,0,-1--1--1,,1|(2726,1212)|
+1,317,318,21,4,0,0,22,0,192,0,-1--1--1,,1|(2912,389)|
+11,318,0,2912,1212,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,319,BC S1,2912,1240,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,320,322,302,100,0,0,22,0,192,0,-1--1--1,,1|(2743,1233)|
+1,321,322,22,4,0,0,22,0,192,0,-1--1--1,,1|(2947,778)|
+11,322,0,2947,1233,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,323,BC S2,2997,1233,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,324,326,302,100,0,0,22,0,192,0,-1--1--1,,1|(2645,1188)|
+1,325,326,23,4,0,0,22,0,192,0,-1--1--1,,1|(3070,1188)|
+11,326,0,2749,1188,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,327,BC S3,2797,1188,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,328,330,302,100,0,0,22,0,192,0,-1--1--1,,1|(2457,1268)|
+1,329,330,24,4,0,0,22,0,192,0,-1--1--1,,1|(2457,1468)|
+11,330,0,2457,1301,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,331,BC S4,2457,1331,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,332,334,302,100,0,0,22,0,192,0,-1--1--1,,1|(2426,1260)|
+1,333,334,25,4,0,0,22,0,192,0,-1--1--1,,1|(2426,1778)|
+11,334,0,2426,1282,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,335,BC unknown,2426,1310,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,336,"Diagnosed/staged CC",2488,1929,77,59,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,337,No CC,1890,1652,42,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,338,340,45,100,0,0,22,0,192,0,-1--1--1,,1|(2006,1650)|
+1,339,340,337,4,0,0,22,0,192,0,-1--1--1,,1|(1951,1650)|
+11,340,0,1976,1650,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,341,No CC rate,1976,1680,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,342,344,337,100,0,0,22,0,192,0,-1--1--1,,1|(1833,1644)|
+1,343,344,4,4,0,0,22,0,192,0,-1--1--1,,1|(1528,1644)|
+11,344,0,1812,1644,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,345,No CC to SOC,1812,1674,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,346,348,45,100,0,0,22,0,192,0,-1--1--1,,1|(2186,1651)|
+1,347,348,336,4,0,0,22,0,192,0,-1--1--1,,1|(2209,1929)|
+11,348,0,2209,1651,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,349,Diagnosed CC rate,2209,1681,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,350,45,348,1,0,0,0,0,192,0,-1--1--1,,1|(2202,1638)|
+1,351,45,340,1,0,0,0,0,192,0,-1--1--1,,1|(2018,1635)|
+1,352,337,344,1,0,0,0,0,192,0,-1--1--1,,1|(1863,1617)|
+1,353,88,314,1,0,0,0,0,192,0,-1--1--1,,1|(2287,1370)|
+1,354,88,306,1,0,0,0,0,192,0,-1--1--1,,1|(2282,1208)|
+1,355,303,310,1,0,0,0,0,192,0,-1--1--1,,1|(2289,1463)|
+1,356,18,280,1,0,0,0,0,192,0,-1--1--1,,1|(2339,872)|
+1,357,26,358,1,0,0,0,0,192,0,-1--1--1,,1|(2600,307)|
+11,358,0,2580,249,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,359,Diagnosed LC rate,2638,249,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,360,362,336,100,0,0,22,0,192,0,-1--1--1,,1|(2867,1916)|
+1,361,362,21,4,0,0,22,0,192,0,-1--1--1,,1|(3178,389)|
+11,362,0,3178,1916,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,363,CC S1,3228,1916,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,364,366,336,100,0,0,22,0,192,0,-1--1--1,,1|(2662,1896)|
+1,365,366,22,4,0,0,22,0,192,0,-1--1--1,,1|(2768,778)|
+11,366,0,2768,1896,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,367,CC S2,2768,1913,44,11,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,368,370,336,100,0,0,22,0,192,0,-1--1--1,,1|(2687,1877)|
+1,369,370,23,4,0,0,22,0,192,0,-1--1--1,,1|(2818,1145)|
+11,370,0,2818,1877,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,371,CC S3,2868,1877,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,372,374,336,100,0,0,22,0,192,0,-1--1--1,,1|(2607,1938)|
+1,373,374,24,4,0,0,22,0,192,0,-1--1--1,,1|(2656,1468)|
+11,374,0,2656,1938,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,375,CC S4,2656,1968,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,376,378,336,100,0,0,22,0,192,0,-1--1--1,,1|(2584,1961)|
+1,377,378,25,4,0,0,22,0,192,0,-1--1--1,,1|(2609,1778)|
+11,378,0,2609,1961,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,379,CC unknown,2609,1991,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,380,336,374,1,0,0,0,0,192,0,-1--1--1,,1|(2574,2016)|
+1,381,336,378,1,0,0,0,0,192,0,-1--1--1,,1|(2598,1974)|
+1,382,336,362,1,0,0,0,0,192,0,-1--1--1,,1|(3014,1947)|
+1,383,336,366,1,0,0,0,0,192,0,-1--1--1,,1|(2733,1887)|
+11,384,0,3086,219,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,385,LC S3,3086,249,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,386,0,3053,237,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,387,LC S2,3103,237,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,388,0,3156,167,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,389,LC S4,3206,167,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,390,0,3108,195,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,391,LC unknown,3160,195,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,392,0,3169,134,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,393,LC S1,3219,134,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,394,264,392,1,0,0,0,0,192,0,-1--1--1,,1|(3064,93)|
+1,395,264,386,1,0,0,0,0,192,0,-1--1--1,,1|(3007,192)|
+1,396,264,384,1,0,0,0,0,192,0,-1--1--1,,1|(3035,156)|
+1,397,264,388,1,0,0,0,0,192,0,-1--1--1,,1|(3116,136)|
+1,398,264,390,1,0,0,0,0,192,0,-1--1--1,,1|(3017,147)|
+1,399,277,292,1,0,0,0,0,192,0,-1--1--1,,1|(2743,938)|
+1,400,277,288,1,0,0,0,0,192,0,-1--1--1,,1|(2756,851)|
+1,401,277,284,1,0,0,0,0,192,0,-1--1--1,,1|(2672,789)|
+1,402,277,296,1,0,0,0,0,192,0,-1--1--1,,1|(2614,985)|
+1,403,277,300,1,0,0,0,0,192,0,-1--1--1,,1|(2642,961)|
+1,404,302,330,1,0,0,0,0,192,0,-1--1--1,,1|(2483,1280)|
+1,405,302,334,1,0,0,0,0,192,0,-1--1--1,,1|(2465,1270)|
+1,406,302,326,1,0,0,0,0,192,0,-1--1--1,,1|(2682,1226)|
+1,407,302,318,1,0,0,0,0,192,0,-1--1--1,,1|(2864,1246)|
+1,408,302,322,1,0,0,0,0,192,0,-1--1--1,,1|(2888,1241)|
+1,409,411,1,100,0,0,22,0,192,0,-1--1--1,,1|(1408,458)|
+1,410,411,15,4,0,0,22,0,192,0,-1--1--1,,1|(1578,458)|
+11,411,0,1544,458,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,412,Uptake LC,1544,488,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,413,1,411,1,0,0,0,0,192,0,-1--1--1,,1|(1460,439)|
+1,414,416,157,100,0,0,22,0,192,0,-1--1--1,,1|(853,2241)|
+1,415,416,15,4,0,0,22,0,192,0,-1--1--1,,1|(1689,2187)|
+11,416,0,853,2187,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,417,SD ineligible to LC,853,2215,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,418,420,157,100,0,0,22,0,192,0,-1--1--1,,1|(772,2342)|
+1,419,420,6,4,0,0,22,0,192,0,-1--1--1,,1|(710,815)|
+11,420,0,710,2342,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,421,SD ineligible to CRC,774,2342,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,422,424,157,100,0,0,22,0,192,0,-1--1--1,,1|(948,2260)|
+1,423,424,7,4,0,0,22,0,192,0,-1--1--1,,1|(1739,2225)|
+11,424,0,948,2225,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,425,SD ineligible to BC,1012,2225,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,426,428,157,100,0,0,22,0,192,0,-1--1--1,,1|(899,2251)|
+1,427,428,8,4,0,0,22,0,192,0,-1--1--1,,1|(1740,2207)|
+11,428,0,899,2207,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,429,SD ineligible to CC,899,2235,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,430,157,424,1,0,0,0,0,192,0,-1--1--1,,1|(926,2254)|
+1,431,157,420,1,0,0,0,0,192,0,-1--1--1,,1|(748,2381)|
+1,432,157,428,1,0,0,0,0,192,0,-1--1--1,,1|(858,2248)|
+1,433,157,416,1,0,0,0,0,192,0,-1--1--1,,1|(831,2206)|
+10,434,Confirmatory MCED test LC,1695,197,60,41,3,3,0,4,-1,0,0,0,0-0-0,254-220-109,|||0-0-0,0,0,0,0,0,0
+1,435,437,15,100,0,0,22,0,192,0,-1--1--1,,1|(1696,350)|
+1,436,437,434,4,0,0,22,0,192,0,-1--1--1,,1|(1696,282)|
+11,437,0,1696,333,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,438,"Low & moderate risk patients",1765,333,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,439,441,434,100,0,0,22,0,192,0,-1--1--1,,1|(1696,144)|
+1,440,441,16,4,0,0,22,0,192,0,-1--1--1,,1|(2290,126)|
+11,441,0,1696,126,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,442,"+ve triage MCED LC",1748,126,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,443,445,434,100,0,0,22,0,192,0,-1--1--1,,1|(1600,202)|
+1,444,445,1,4,0,0,22,0,192,0,-1--1--1,,1|(1523,202)|
+11,445,0,1557,202,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,446,"-ve triage MCED LC",1557,230,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,447,15,437,1,0,0,0,0,192,0,-1--1--1,,1|(1739,385)|
+1,448,434,445,1,0,0,0,0,192,0,-1--1--1,,1|(1636,273)|
+1,449,434,441,1,0,0,0,0,192,0,-1--1--1,,1|(1645,139)|
+1,450,452,16,100,0,0,22,0,192,0,-1--1--1,,1|(2239,326)|
+1,451,452,1,4,0,0,22,0,192,0,-1--1--1,,1|(1865,297)|
+11,452,0,2239,297,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,453,No action required,2239,327,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,454,16,452,1,0,0,0,0,192,0,-1--1--1,,1|(2211,320)|
+10,455,Confirmatory MCED CRC,1803,995,57,38,3,3,0,4,-1,0,0,0,0-0-0,254-213-51,|||0-0-0,0,0,0,0,0,0
+1,456,458,253,100,0,0,22,0,192,0,-1--1--1,,1|(1894,856)|
+1,457,458,455,4,0,0,22,0,192,0,-1--1--1,,1|(1894,995)|
+11,458,0,1894,895,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,459,Pts opting out colonoscopy,1961,895,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,460,462,6,100,0,0,22,0,192,0,-1--1--1,,1|(1809,815)|
+1,461,462,455,4,0,0,22,0,192,0,-1--1--1,,1|(1809,929)|
+11,462,0,1809,895,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,463,"-ve iFOBT to MCED",1809,923,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,464,6,462,1,0,0,0,0,192,0,-1--1--1,,1|(1802,907)|
+1,465,253,458,1,0,0,0,0,192,0,-1--1--1,,1|(1874,867)|
+1,466,468,455,100,0,0,22,0,192,0,-1--1--1,,1|(1890,1016)|
+1,467,468,17,4,0,0,22,0,192,0,-1--1--1,,1|(2068,1016)|
+11,468,0,1928,1016,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,469,"Confirm +ve MCED",1966,1016,30,18,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,470,455,468,1,0,0,0,0,192,0,-1--1--1,,1|(1898,1048)|
+1,471,473,455,100,0,0,22,0,192,0,-1--1--1,,1|(1722,994)|
+1,472,473,2,4,0,0,22,0,192,0,-1--1--1,,1|(1650,994)|
+11,473,0,1691,994,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,474,"Confirm -ve MCED CRC",1691,1022,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,475,455,473,1,0,0,0,0,192,0,-1--1--1,,1|(1711,1041)|
+10,476,Confirmatory MCED BC,1816,1487,70,27,3,3,0,4,-1,0,0,0,0-0-0,254-213-51,|||0-0-0,0,0,0,0,0,0
+1,477,479,7,100,0,0,22,0,192,0,-1--1--1,,1|(1783,1374)|
+1,478,479,476,4,0,0,22,0,192,0,-1--1--1,,1|(1783,1429)|
+11,479,0,1783,1390,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,480,"Mamo -ve to MCED",1783,1420,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,481,7,479,1,0,0,0,0,192,0,-1--1--1,,1|(1797,1381)|
+1,482,484,476,100,0,0,22,0,192,0,-1--1--1,,1|(1890,1486)|
+1,483,484,88,4,0,0,22,0,192,0,-1--1--1,,1|(2211,1486)|
+11,484,0,1901,1486,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,485,"Confirm +ve BC",1968,1486,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,486,476,484,1,0,0,0,0,192,0,-1--1--1,,1|(1858,1449)|
+1,487,489,476,100,0,0,22,0,192,0,-1--1--1,,1|(1737,1482)|
+1,488,489,3,4,0,0,22,0,192,0,-1--1--1,,1|(1647,1482)|
+11,489,0,1722,1482,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,490,"Confirm -ve BC",1722,1512,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,491,476,489,1,0,0,0,0,192,0,-1--1--1,,1|(1781,1533)|
+10,492,Specialist visit to confirm LC,434,244,126,57,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,493,Specialist visit to confirm CRC,340,900,78,49,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,494,Specialist visit to confirm BC,534,1231,81,61,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,495,Specialist visit to confirm CC,448,1757,130,74,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,496,LDCT after MCED,131,242,76,56,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,497,"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy) MCED",-94,240,72,57,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,498,Stage I MCED,-591,250,97,93,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+1,499,678,492,100,0,0,22,0,192,0,-1--1--1,,1|(283,245)|
+1,500,678,496,4,0,0,22,0,192,0,-1--1--1,,1|(227,245)|
+1,501,680,496,100,0,0,22,0,192,0,-1--1--1,,1|(42,240)|
+1,502,680,497,4,0,0,22,0,192,0,-1--1--1,,1|(-3,240)|
+1,503,492,678,1,0,0,0,0,192,0,-1--1--1,,1|(286,217)|
+1,504,496,680,1,0,0,0,0,192,0,-1--1--1,,1|(43,215)|
+10,505,Stage II MCED,-713,884,100,98,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,506,Stage III MCED,-844,1338,102,96,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,507,Stage IV MCED,-562,1769,99,92,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,508,Unknown MCED,-396,2102,102,95,3,3,0,4,-1,0,0,0,0-0-0,91-150-255,|||0-0-0,0,0,0,0,0,0
+10,509,"Staging LC (CT/PET-CT/tissue diagnosis MD) MCED",-296,245,68,57,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,510,682,497,100,0,0,22,0,192,0,-1--1--1,,1|(-175,240)|
+1,511,682,509,4,0,0,22,0,192,0,-1--1--1,,1|(-212,240)|
+1,512,684,509,100,0,0,22,0,192,0,-1--1--1,,1|(-389,230)|
+1,513,684,498,4,0,0,22,0,192,0,-1--1--1,,1|(-460,230)|
+10,514,Colonoscopy after MCED,168,904,76,56,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,515,Histological examination after MCED CRC,-62,903,69,55,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,516,705,514,100,0,0,22,0,192,0,-1--1--1,,1|(73,903)|
+1,517,705,515,4,0,0,22,0,192,0,-1--1--1,,1|(24,903)|
+1,518,514,705,1,0,0,0,0,192,0,-1--1--1,,1|(68,872)|
+10,519,"Diagnosed/staged (MRI/CT/PET) CRC MCED",-261,893,68,57,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,520,707,515,100,0,0,22,0,192,0,-1--1--1,,1|(-144,893)|
+1,521,707,519,4,0,0,22,0,192,0,-1--1--1,,1|(-181,893)|
+10,522,Mammography after MCED,359,1337,56,54,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,523,"BC Biopsy & histological assessment MCED",-71,1341,69,55,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,524,"Diagnosed/staged BC MCED",-282,1351,68,57,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,525,721,523,100,0,0,22,0,192,0,-1--1--1,,1|(-153,1339)|
+1,526,721,524,4,0,0,22,0,192,0,-1--1--1,,1|(-196,1339)|
+10,527,Colposcopy after MCED,196,1772,76,56,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,528,Histological assessement CC MCED,-28,1768,69,55,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,529,732,527,100,0,0,22,0,192,0,-1--1--1,,1|(107,1771)|
+1,530,732,528,4,0,0,22,0,192,0,-1--1--1,,1|(61,1771)|
+1,531,527,732,1,0,0,0,0,192,0,-1--1--1,,1|(124,1732)|
+10,532,"Diagnosed/staged CC MCED",-234,1778,68,57,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,533,734,528,100,0,0,22,0,192,0,-1--1--1,,1|(-109,1769)|
+1,534,734,532,4,0,0,22,0,192,0,-1--1--1,,1|(-149,1769)|
+1,535,515,707,1,0,0,0,0,192,0,-1--1--1,,1|(-154,847)|
+1,536,523,721,1,0,0,0,0,192,0,-1--1--1,,1|(-159,1310)|
+1,537,528,734,1,0,0,0,0,192,0,-1--1--1,,1|(-107,1736)|
+1,538,497,682,1,0,0,0,0,192,0,-1--1--1,,1|(-179,210)|
+1,539,509,684,1,0,0,0,0,192,0,-1--1--1,,1|(-392,212)|
+1,540,703,493,100,0,0,22,0,192,0,-1--1--1,,1|(331,968)|
+1,541,703,514,4,0,0,22,0,192,0,-1--1--1,,1|(168,995)|
+1,542,493,703,1,0,0,0,0,192,0,-1--1--1,,1|(294,991)|
+1,543,719,494,100,0,0,22,0,192,0,-1--1--1,,1|(494,1315)|
+1,544,719,522,4,0,0,22,0,192,0,-1--1--1,,1|(451,1347)|
+1,545,494,719,1,0,0,0,0,192,0,-1--1--1,,1|(465,1320)|
+1,546,730,495,100,0,0,22,0,192,0,-1--1--1,,1|(314,1764)|
+1,547,730,527,4,0,0,22,0,192,0,-1--1--1,,1|(285,1764)|
+1,548,495,730,1,0,0,0,0,192,0,-1--1--1,,1|(315,1732)|
+1,549,551,153,100,0,0,22,0,192,0,-1--1--1,,1|(796,226)|
+1,550,551,492,4,0,0,22,0,192,0,-1--1--1,,1|(662,226)|
+11,551,0,770,226,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,552,SD LC,770,256,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,553,555,153,100,0,0,22,0,192,0,-1--1--1,,1|(826,344)|
+1,554,555,493,4,0,0,22,0,192,0,-1--1--1,,1|(340,410)|
+11,555,0,826,410,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,556,SD LC to CRC,826,438,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,557,559,153,100,0,0,22,0,192,0,-1--1--1,,1|(898,349)|
+1,558,559,494,4,0,0,22,0,192,0,-1--1--1,,1|(534,421)|
+11,559,0,898,421,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,560,SD LC to BC,898,449,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,561,563,153,100,0,0,22,0,192,0,-1--1--1,,1|(985,359)|
+1,562,563,495,4,0,0,22,0,192,0,-1--1--1,,1|(448,440)|
+11,563,0,985,440,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,564,SD LC to CC,985,468,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,565,567,154,100,0,0,22,0,192,0,-1--1--1,,1|(763,911)|
+1,566,567,493,4,0,0,22,0,192,0,-1--1--1,,1|(575,911)|
+11,567,0,739,911,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,568,SD CRC,739,941,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,569,571,154,100,0,0,22,0,192,0,-1--1--1,,1|(695,862)|
+1,570,571,492,4,0,0,22,0,192,0,-1--1--1,,1|(602,244)|
+11,571,0,602,862,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,572,SD CRC to LC,602,890,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,573,575,154,100,0,0,22,0,192,0,-1--1--1,,1|(727,885)|
+1,574,575,494,4,0,0,22,0,192,0,-1--1--1,,1|(727,1231)|
+11,575,0,727,974,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,576,SD CRC to BC,787,974,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,577,579,154,100,0,0,22,0,192,0,-1--1--1,,1|(808,971)|
+1,578,579,495,4,0,0,22,0,192,0,-1--1--1,,1|(448,1008)|
+11,579,0,808,1008,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,580,SD CRC to CC,808,1036,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,581,583,155,100,0,0,22,0,192,0,-1--1--1,,1|(742,1360)|
+1,582,583,494,4,0,0,22,0,192,0,-1--1--1,,1|(722,1231)|
+11,583,0,722,1360,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,584,SD BC,722,1390,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,585,587,155,100,0,0,22,0,192,0,-1--1--1,,1|(709,1303)|
+1,586,587,492,4,0,0,22,0,192,0,-1--1--1,,1|(655,244)|
+11,587,0,655,1303,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,588,SD BC to LC,655,1331,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,589,591,155,100,0,0,22,0,192,0,-1--1--1,,1|(952,1395)|
+1,590,591,495,4,0,0,22,0,192,0,-1--1--1,,1|(448,1420)|
+11,591,0,952,1420,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,592,SD BC to CC,952,1448,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,593,595,156,100,0,0,22,0,192,0,-1--1--1,,1|(767,1692)|
+1,594,595,495,4,0,0,22,0,192,0,-1--1--1,,1|(653,1692)|
+11,595,0,734,1692,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,596,SD CC,734,1722,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,597,599,156,100,0,0,22,0,192,0,-1--1--1,,1|(905,1662)|
+1,598,599,494,4,0,0,22,0,192,0,-1--1--1,,1|(534,1639)|
+11,599,0,905,1639,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,600,SD CC to BC,905,1667,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,601,603,156,100,0,0,22,0,192,0,-1--1--1,,1|(723,1718)|
+1,602,603,493,4,0,0,22,0,192,0,-1--1--1,,1|(644,900)|
+11,603,0,644,1718,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,604,SD CC to CRC,644,1746,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,605,607,156,100,0,0,22,0,192,0,-1--1--1,,1|(980,1656)|
+1,606,607,492,4,0,0,22,0,192,0,-1--1--1,,1|(434,1626)|
+11,607,0,980,1626,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,608,SD CC to LC,980,1654,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,609,611,496,100,0,0,22,0,192,0,-1--1--1,,1|(124,141)|
+1,610,611,1,4,0,0,22,0,192,0,-1--1--1,,1|(1408,88)|
+11,611,0,124,88,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,612,No findings LDCT after MCED,124,119,48,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,613,615,497,100,0,0,22,0,192,0,-1--1--1,,1|(-106,139)|
+1,614,615,1,4,0,0,22,0,192,0,-1--1--1,,1|(1408,88)|
+11,615,0,-106,88,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,616,NF LC biopsy after MCED,-106,118,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,617,619,509,100,0,0,22,0,192,0,-1--1--1,,1|(-353,346)|
+1,618,619,505,4,0,0,22,0,192,0,-1--1--1,,1|(-713,396)|
+11,619,0,-353,396,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,620,LC MCED S2,-353,424,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,621,623,509,100,0,0,22,0,192,0,-1--1--1,,1|(-296,475)|
+1,622,623,506,4,0,0,22,0,192,0,-1--1--1,,1|(-844,475)|
+11,623,0,-470,475,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,624,LC MCED S3,-418,475,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,625,627,509,100,0,0,22,0,192,0,-1--1--1,,1|(-296,411)|
+1,626,627,507,4,0,0,22,0,192,0,-1--1--1,,1|(-490,1047)|
+11,627,0,-490,411,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,628,LC MCED S4,-438,411,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,629,631,519,100,0,0,22,0,192,0,-1--1--1,,1|(-325,817)|
+1,630,631,498,4,0,0,22,0,192,0,-1--1--1,,1|(-591,793)|
+11,631,0,-325,793,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,632,CRC MCED S1,-325,821,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,633,635,519,100,0,0,22,0,192,0,-1--1--1,,1|(-358,897)|
+1,634,635,505,4,0,0,22,0,192,0,-1--1--1,,1|(-506,897)|
+11,635,0,-394,897,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,636,CRC MCED S2,-394,927,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,637,639,519,100,0,0,22,0,192,0,-1--1--1,,1|(-261,986)|
+1,638,639,506,4,0,0,22,0,192,0,-1--1--1,,1|(-380,1338)|
+11,639,0,-380,986,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,640,CRC MCED S3,-324,986,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,641,643,519,100,0,0,22,0,192,0,-1--1--1,,1|(-261,1193)|
+1,642,643,507,4,0,0,22,0,192,0,-1--1--1,,1|(-366,1769)|
+11,643,0,-366,1193,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,644,CRC MCED S4,-310,1193,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,645,647,524,100,0,0,22,0,192,0,-1--1--1,,1|(-337,1275)|
+1,646,647,498,4,0,0,22,0,192,0,-1--1--1,,1|(-591,1250)|
+11,647,0,-337,1250,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,648,BC MCED S1,-337,1278,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,649,651,524,100,0,0,22,0,192,0,-1--1--1,,1|(-286,1265)|
+1,650,651,505,4,0,0,22,0,192,0,-1--1--1,,1|(-713,1231)|
+11,651,0,-286,1231,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,652,BC MCED S2,-286,1259,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,653,655,524,100,0,0,22,0,192,0,-1--1--1,,1|(-372,1376)|
+1,654,655,506,4,0,0,22,0,192,0,-1--1--1,,1|(-574,1376)|
+11,655,0,-400,1376,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,656,BC MCED S3,-400,1406,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,657,659,524,100,0,0,22,0,192,0,-1--1--1,,1|(-259,1431)|
+1,658,659,507,4,0,0,22,0,192,0,-1--1--1,,1|(-562,1460)|
+11,659,0,-259,1460,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,660,BC MCED S4,-259,1488,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,661,663,532,100,0,0,22,0,192,0,-1--1--1,,1|(-234,1599)|
+1,662,663,498,4,0,0,22,0,192,0,-1--1--1,,1|(-591,1599)|
+11,663,0,-307,1599,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,664,CC MCED S1,-307,1627,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,665,667,532,100,0,0,22,0,192,0,-1--1--1,,1|(-251,1686)|
+1,666,667,505,4,0,0,22,0,192,0,-1--1--1,,1|(-713,1646)|
+11,667,0,-251,1646,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,668,CC MCED S2,-251,1674,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,669,671,532,100,0,0,22,0,192,0,-1--1--1,,1|(-202,1675)|
+1,670,671,506,4,0,0,22,0,192,0,-1--1--1,,1|(-844,1624)|
+11,671,0,-202,1624,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,672,CC MCED S3,-202,1652,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,673,675,532,100,0,0,22,0,192,0,-1--1--1,,1|(-337,1801)|
+1,674,675,507,4,0,0,22,0,192,0,-1--1--1,,1|(-424,1801)|
+11,675,0,-379,1801,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,676,CC MCED S4,-379,1831,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,677,153,551,1,0,0,0,0,192,0,-1--1--1,,1|(795,178)|
+11,678,0,252,245,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,679,LDCT MCED,252,275,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,680,0,22,240,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,681,"+ve LDCT MCED",22,270,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,682,0,-191,240,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,683,"+ve biopsy MCED",-191,270,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,684,0,-421,230,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,685,DS1 MCED,-421,260,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,686,497,615,1,0,0,0,0,192,0,-1--1--1,,1|(-53,149)|
+1,687,496,611,1,0,0,0,0,192,0,-1--1--1,,1|(88,142)|
+1,688,153,555,1,0,0,0,0,192,0,-1--1--1,,1|(829,355)|
+1,689,153,559,1,0,0,0,0,192,0,-1--1--1,,1|(859,404)|
+1,690,153,563,1,0,0,0,0,192,0,-1--1--1,,1|(1010,415)|
+1,691,154,571,1,0,0,0,0,192,0,-1--1--1,,1|(678,829)|
+1,692,509,623,1,0,0,0,0,192,0,-1--1--1,,1|(-395,457)|
+1,693,509,619,1,0,0,0,0,192,0,-1--1--1,,1|(-348,358)|
+1,694,509,627,1,0,0,0,0,192,0,-1--1--1,,1|(-437,327)|
+1,695,697,509,100,0,0,22,0,192,0,-1--1--1,,1|(-325,366)|
+1,696,697,508,4,0,0,22,0,192,0,-1--1--1,,1|(-325,1225)|
+11,697,0,-325,437,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,698,LC unknown MCED,-325,465,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,699,509,697,1,0,0,0,0,192,0,-1--1--1,,1|(-364,380)|
+1,700,155,587,1,0,0,0,0,192,0,-1--1--1,,1|(673,1395)|
+1,701,156,607,1,0,0,0,0,192,0,-1--1--1,,1|(1003,1637)|
+1,702,154,567,1,0,0,0,0,192,0,-1--1--1,,1|(784,959)|
+11,703,0,331,995,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,704,CRC Colo MCED,331,1025,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,705,0,47,903,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,706,"+ve colo MCED",47,933,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,707,0,-164,893,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,708,"+ve histo CRC MCED",-164,923,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,709,519,631,1,0,0,0,0,192,0,-1--1--1,,1|(-288,780)|
+1,710,519,635,1,0,0,0,0,192,0,-1--1--1,,1|(-361,931)|
+1,711,524,647,1,0,0,0,0,192,0,-1--1--1,,1|(-318,1233)|
+1,712,519,639,1,0,0,0,0,192,0,-1--1--1,,1|(-356,996)|
+1,713,519,643,1,0,0,0,0,192,0,-1--1--1,,1|(-301,1103)|
+1,714,716,519,100,0,0,22,0,192,0,-1--1--1,,1|(-275,996)|
+1,715,716,508,4,0,0,22,0,192,0,-1--1--1,,1|(-396,1049)|
+11,716,0,-275,1049,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,717,CRC unknown MCED,-275,1077,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,718,519,716,1,0,0,0,0,192,0,-1--1--1,,1|(-239,1015)|
+11,719,0,494,1347,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,720,Mammo MCED,494,1377,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,721,0,-173,1339,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,722,"+ve biopsy BC MCED",-173,1369,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,723,524,655,1,0,0,0,0,192,0,-1--1--1,,1|(-376,1419)|
+1,724,524,659,1,0,0,0,0,192,0,-1--1--1,,1|(-252,1454)|
+1,725,524,651,1,0,0,0,0,192,0,-1--1--1,,1|(-258,1245)|
+1,726,532,663,1,0,0,0,0,192,0,-1--1--1,,1|(-278,1612)|
+1,727,532,671,1,0,0,0,0,192,0,-1--1--1,,1|(-192,1632)|
+1,728,532,675,1,0,0,0,0,192,0,-1--1--1,,1|(-325,1852)|
+1,729,532,667,1,0,0,0,0,192,0,-1--1--1,,1|(-233,1651)|
+11,730,0,304,1764,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,731,Colposcopy MCED,304,1794,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,732,0,87,1771,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,733,"+ve Colposcopy MCED",87,1801,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,734,0,-127,1769,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,735,"CC +ve biopsy MCED",-127,1799,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,736,738,532,100,0,0,22,0,192,0,-1--1--1,,1|(-256,1855)|
+1,737,738,508,4,0,0,22,0,192,0,-1--1--1,,1|(-256,2102)|
+11,738,0,-256,1882,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,739,CC unknown MCED,-256,1910,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,740,532,738,1,0,0,0,0,192,0,-1--1--1,,1|(-232,1845)|
+1,741,743,524,100,0,0,22,0,192,0,-1--1--1,,1|(-313,1441)|
+1,742,743,508,4,0,0,22,0,192,0,-1--1--1,,1|(-313,1746)|
+11,743,0,-313,1480,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,744,BC unknown MCED,-313,1508,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,745,524,743,1,0,0,0,0,192,0,-1--1--1,,1|(-279,1453)|
+1,746,154,575,1,0,0,0,0,192,0,-1--1--1,,1|(790,948)|
+1,747,156,595,1,0,0,0,0,192,0,-1--1--1,,1|(802,1660)|
+1,748,156,599,1,0,0,0,0,192,0,-1--1--1,,1|(933,1641)|
+1,749,154,579,1,0,0,0,0,192,0,-1--1--1,,1|(875,976)|
+1,750,156,603,1,0,0,0,0,192,0,-1--1--1,,1|(702,1668)|
+1,751,155,591,1,0,0,0,0,192,0,-1--1--1,,1|(929,1415)|
+1,752,155,583,1,0,0,0,0,192,0,-1--1--1,,1|(761,1396)|
+1,753,755,155,100,0,0,22,0,192,0,-1--1--1,,1|(857,1196)|
+1,754,755,493,4,0,0,22,0,192,0,-1--1--1,,1|(340,1128)|
+11,755,0,857,1128,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,756,SD BC to CRC,857,1156,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,757,155,755,1,0,0,0,0,192,0,-1--1--1,,1|(889,1174)|
+12,758,48,1093,204,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,759,761,758,100,0,0,22,0,192,0,-1--1--1,,1|(1167,204)|
+1,760,761,1,4,0,0,22,0,192,0,-1--1--1,,1|(1280,204)|
+11,761,0,1237,204,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,762,Pop eligible LC,1237,234,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,763,65,143,1,0,0,0,0,192,0,-1--1--1,,1|(2031,1748)|
+12,764,48,1182,928,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,765,767,764,100,0,0,22,0,192,0,-1--1--1,,1|(1280,928)|
+1,766,767,2,4,0,0,22,0,192,0,-1--1--1,,1|(1425,928)|
+11,767,0,1375,928,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,768,Pop eligible CRC,1375,958,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,769,761,761,4,0,0,22,0,192,0,-1--1--1,,1|(1237,204)|
+12,770,48,1187,1322,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,771,773,770,100,0,0,22,0,192,0,-1--1--1,,1|(1271,1322)|
+1,772,773,3,4,0,0,22,0,192,0,-1--1--1,,1|(1392,1322)|
+11,773,0,1352,1322,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,774,Pop eligible BC,1352,1352,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,775,48,1201,1752,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,776,778,775,100,0,0,22,0,192,0,-1--1--1,,1|(1268,1752)|
+1,777,778,4,4,0,0,22,0,192,0,-1--1--1,,1|(1394,1752)|
+11,778,0,1331,1752,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,779,Pop eligible CC,1331,1782,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,780,48,1293,2397,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,781,783,780,100,0,0,22,0,192,0,-1--1--1,,1|(1333,2397)|
+1,782,783,5,4,0,0,22,0,192,0,-1--1--1,,1|(1423,2397)|
+11,783,0,1370,2397,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,784,Pop ineligible SOC,1370,2427,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,785,336,370,1,0,0,0,0,192,0,-1--1--1,,1|(2644,1844)|
+1,786,788,18,100,0,0,22,0,192,0,-1--1--1,,1|(2358,735)|
+1,787,788,2,4,0,0,22,0,192,0,-1--1--1,,1|(1544,707)|
+11,788,0,2358,707,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,789,No CRC rate,2358,737,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,790,18,788,1,0,0,0,0,192,0,-1--1--1,,1|(2388,715)|
+10,791,Specialist CRC,1999,742,61,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,792,794,253,100,0,0,22,0,192,0,-1--1--1,,1|(1938,803)|
+1,793,794,791,4,0,0,22,0,192,0,-1--1--1,,1|(1963,779)|
+11,794,0,1963,803,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,795,Attended specialist,2013,803,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,796,798,791,100,0,0,22,0,192,0,-1--1--1,,1|(2068,741)|
+1,797,798,17,4,0,0,22,0,192,0,-1--1--1,,1|(2083,785)|
+11,798,0,2083,741,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,799,Colonoscopy uptake,2137,741,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,800,253,794,1,0,0,0,0,192,0,-1--1--1,,1|(1937,827)|
+1,801,791,798,1,0,0,0,0,192,0,-1--1--1,,1|(2043,701)|
+1,802,804,26,100,0,0,22,0,192,0,-1--1--1,,1|(2527,210)|
+1,803,804,1,4,0,0,22,0,192,0,-1--1--1,,1|(1408,88)|
+11,804,0,2527,88,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,805,No LC rate 0,2527,118,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,806,26,804,1,0,0,0,0,192,0,-1--1--1,,1|(2481,166)|
+10,807,Specialist visit BC,2018,1323,44,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,808,810,807,100,0,0,22,0,192,0,-1--1--1,,1|(2078,1323)|
+1,809,810,88,4,0,0,22,0,192,0,-1--1--1,,1|(2131,1323)|
+11,810,0,2101,1323,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,811,Biopsy required BC,2101,1353,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,812,807,810,1,0,0,0,0,192,0,-1--1--1,,1|(2052,1280)|
+1,813,815,7,100,0,0,22,0,192,0,-1--1--1,,1|(1835,1323)|
+1,814,815,807,4,0,0,22,0,192,0,-1--1--1,,1|(1927,1323)|
+11,815,0,1874,1323,6,8,34,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,816,"Mammo +ve",1922,1323,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,817,7,815,1,0,0,0,0,192,0,-1--1--1,,1|(1860,1305)|
+10,818,Specialist visit BC MCED,143,1338,55,55,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,819,821,818,100,0,0,22,0,192,0,-1--1--1,,1|(69,1338)|
+1,820,821,523,4,0,0,22,0,192,0,-1--1--1,,1|(16,1338)|
+11,821,0,42,1338,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,822,Biopsy required BC MCED,42,1367,48,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,823,818,821,1,0,0,0,0,192,0,-1--1--1,,1|(53,1296)|
+1,824,826,514,100,0,0,22,0,192,0,-1--1--1,,1|(160,819)|
+1,825,826,2,4,0,0,22,0,192,0,-1--1--1,,1|(1544,783)|
+11,826,0,160,783,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,827,"Coloposcopy -ve MCED",160,813,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,828,514,826,1,0,0,0,0,192,0,-1--1--1,,1|(215,828)|
+1,829,831,515,100,0,0,22,0,192,0,-1--1--1,,1|(-61,819)|
+1,830,831,2,4,0,0,22,0,192,0,-1--1--1,,1|(1544,783)|
+11,831,0,-61,783,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,832,"Histo -ve MCED CRC",-61,813,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,833,515,831,1,0,0,0,0,192,0,-1--1--1,,1|(-11,828)|
+1,834,836,522,100,0,0,22,0,192,0,-1--1--1,,1|(344,1429)|
+1,835,836,3,4,0,0,22,0,192,0,-1--1--1,,1|(888,1475)|
+11,836,0,344,1475,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,837,"Mammo -ve MCED",344,1505,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,838,522,836,1,0,0,0,0,192,0,-1--1--1,,1|(316,1437)|
+1,839,841,818,100,0,0,22,0,192,0,-1--1--1,,1|(140,1430)|
+1,840,841,3,4,0,0,22,0,192,0,-1--1--1,,1|(786,1475)|
+11,841,0,140,1475,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,842,Specilaist no furth MCED BC,140,1505,56,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,843,845,523,100,0,0,22,0,192,0,-1--1--1,,1|(-85,1431)|
+1,844,845,3,4,0,0,22,0,192,0,-1--1--1,,1|(673,1475)|
+11,845,0,-85,1475,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,846,"Histo -ve BC MCED",-85,1505,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,847,818,841,1,0,0,0,0,192,0,-1--1--1,,1|(98,1414)|
+1,848,523,845,1,0,0,0,0,192,0,-1--1--1,,1|(-114,1443)|
+1,849,851,492,100,0,0,22,0,192,0,-1--1--1,,1|(440,141)|
+1,850,851,1,4,0,0,22,0,192,0,-1--1--1,,1|(1408,88)|
+11,851,0,440,88,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,852,"Specialist no furth. LC MCED",440,118,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,853,492,851,1,0,0,0,0,192,0,-1--1--1,,1|(377,148)|
+1,854,856,493,100,0,0,22,0,192,0,-1--1--1,,1|(296,821)|
+1,855,856,2,4,0,0,22,0,192,0,-1--1--1,,1|(1544,783)|
+11,856,0,296,783,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,857,"Specialist no furth. CRC MCED",296,814,56,23,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,858,493,856,1,0,0,0,0,192,0,-1--1--1,,1|(367,812)|
+1,859,861,494,100,0,0,22,0,192,0,-1--1--1,,1|(699,1180)|
+1,860,861,3,4,0,0,22,0,192,0,-1--1--1,,1|(1502,1180)|
+11,861,0,790,1180,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,862,"Specialist no furth. BC MCED",790,1210,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,863,494,861,1,0,0,0,0,192,0,-1--1--1,,1|(740,1147)|
+1,864,866,522,100,0,0,22,0,192,0,-1--1--1,,1|(279,1337)|
+1,865,866,818,4,0,0,22,0,192,0,-1--1--1,,1|(221,1337)|
+11,866,0,250,1337,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,867,"Mammo +ve MCED",250,1367,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,868,522,866,1,0,0,0,0,192,0,-1--1--1,,1|(284,1296)|
+1,869,871,495,100,0,0,22,0,192,0,-1--1--1,,1|(428,1846)|
+1,870,871,4,4,0,0,22,0,192,0,-1--1--1,,1|(942,1869)|
+11,871,0,428,1869,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,872,"Specialist no furth. CC MCED",428,1899,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,873,875,527,100,0,0,22,0,192,0,-1--1--1,,1|(182,1844)|
+1,874,875,4,4,0,0,22,0,192,0,-1--1--1,,1|(819,1869)|
+11,875,0,182,1869,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,876,"Colposcopy -ve MCED",182,1899,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,877,879,528,100,0,0,22,0,192,0,-1--1--1,,1|(-26,1842)|
+1,878,879,4,4,0,0,22,0,192,0,-1--1--1,,1|(715,1869)|
+11,879,0,-26,1869,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,880,"HIsto -ve CC MCED",-26,1899,52,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,881,495,871,1,0,0,0,0,192,0,-1--1--1,,1|(358,1853)|
+1,882,527,875,1,0,0,0,0,192,0,-1--1--1,,1|(127,1837)|
+1,883,528,879,1,0,0,0,0,192,0,-1--1--1,,1|(-69,1859)|
+12,884,0,1389,43,179,39,8,7,0,58,-1,0,0,0,0-0-0,0-0-0,Helvetica|14||251-2-7,0,0,0,0,0,0
+The model starts here with eligible population (green box) - applicable to all cancer types
+12,885,0,917,44,220,61,8,7,0,58,-1,0,0,0,0-0-0,0-0-0,Helvetica|14||251-2-7,0,0,0,0,0,0
+Individuals undergoing MCED will adhere to the pathway outlined on the left side of the diagram - applicable to all cancer types
+12,886,0,1871,46,220,61,8,7,0,58,-1,0,0,0,0-0-0,0-0-0,Helvetica|14||251-2-7,0,0,0,0,0,0
+Individuals undergoing SOC will adhere to the pathway outlined on the right side of the diagram - applicable to all cancer types
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Cancer stage results
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,92,2
+10,1,Stage I combined results,288,345,55,9,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||0-0-255,0,0,0,0,0,0
+10,2,Stage II combined results,607,347,57,9,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||0-0-255,0,0,0,0,0,0
+10,3,Stage III combined results,941,345,59,9,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||0-0-255,0,0,0,0,0,0
+10,4,Stage IV combined results,1306,343,59,9,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||0-0-255,0,0,0,0,0,0
+10,5,Unknown combined results,1637,348,42,23,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||0-0-255,0,0,0,0,0,0
+10,6,Stage I,284,437,28,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,7,Stage I MCED,283,519,46,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,8,Stage II,605,442,29,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,9,Stage II MCED,605,518,48,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,10,Stage III,941,442,31,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,11,Stage III MCED,944,516,50,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,12,Stage IV,1304,448,31,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,13,Stage IV MCED,1310,519,50,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,14,Unknown,1648,445,36,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,15,Unknown MCED,1659,521,54,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,16,6,1,1,0,0,0,0,192,0,-1--1--1,,1|(388,346)|
+1,17,7,1,1,0,0,0,0,192,0,-1--1--1,,1|(170,421)|
+1,18,8,2,1,0,0,0,0,192,0,-1--1--1,,1|(686,331)|
+1,19,9,2,1,0,0,0,0,192,0,-1--1--1,,1|(461,474)|
+1,20,10,3,1,0,0,0,0,192,0,-1--1--1,,1|(1062,376)|
+1,21,11,3,1,0,0,0,0,192,0,-1--1--1,,1|(801,447)|
+1,22,12,4,1,0,0,0,0,192,0,-1--1--1,,1|(1394,343)|
+1,23,13,4,1,0,0,0,0,192,0,-1--1--1,,1|(1173,473)|
+1,24,14,5,1,0,0,0,0,192,0,-1--1--1,,1|(1739,433)|
+1,25,15,5,1,0,0,0,0,192,0,-1--1--1,,1|(1521,506)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Cost results
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,67,2
+10,1,MCED test CRC,-1218,-2271,44,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,2,LDCT cost 0,379,347,35,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,LC specialist cost 0,887,350,54,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,LC biopsy cost 0,1057,358,47,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,5,LDCT cost 2 0,547,343,40,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,6,LDCT cost 3 0,730,347,40,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Total LC cost results,615,231,56,22,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||251-2-7,0,0,0,0,0,0
+1,8,2,7,1,0,0,0,0,192,0,-1--1--1,,1|(399,222)|
+1,9,5,7,1,0,0,0,0,192,0,-1--1--1,,1|(492,245)|
+1,10,6,7,1,0,0,0,0,192,0,-1--1--1,,1|(735,268)|
+1,11,3,7,1,0,0,0,0,192,0,-1--1--1,,1|(778,179)|
+1,12,4,7,1,0,0,0,0,192,0,-1--1--1,,1|(955,215)|
+10,13,LDCT 2yrs,386,496,37,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,14,13,2,1,0,0,0,0,192,0,-1--1--1,,1|(296,414)|
+10,15,LDCT 3 months,530,485,52,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,16,LDCT 12 months,700,493,55,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,17,Rapid access to specialist,869,496,49,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,18,"Tissue diagnosis (bronchoscopy/transthoracic needle biopsy)",1056,497,68,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,19,MCED test LC,206,496,47,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,20,15,5,1,0,0,0,0,192,0,-1--1--1,,1|(447,431)|
+1,21,16,6,1,0,0,0,0,192,0,-1--1--1,,1|(610,413)|
+1,22,17,3,1,0,0,0,0,192,0,-1--1--1,,1|(769,414)|
+1,23,18,4,1,0,0,0,0,192,0,-1--1--1,,1|(933,418)|
+10,24,MCED LC cost 0,214,349,46,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,25,19,24,1,0,0,0,0,192,0,-1--1--1,,1|(105,456)|
+1,26,24,7,1,0,0,0,0,192,0,-1--1--1,,1|(277,217)|
+10,27,iFOBT cost 0,1567,353,37,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,28,Colonoscopy cost 0,1737,351,56,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,29,CRC surgery cost 0,1952,352,54,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,30,CRC total cost results,1627,268,61,22,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||251-2-7,0,0,0,0,0,0
+10,31,MCED CRC cost 0,1384,359,50,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,32,MCED test CRC,1395,490,51,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,33,iFOBT,1589,477,26,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,34,Colonoscopy,1752,469,45,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,35,Histological examination CRC,1978,454,48,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,36,31,30,1,0,0,0,0,192,0,-1--1--1,,1|(1433,237)|
+1,37,27,30,1,0,0,0,0,192,0,-1--1--1,,1|(1522,281)|
+1,38,28,30,1,0,0,0,0,192,0,-1--1--1,,1|(1731,263)|
+1,39,29,30,1,0,0,0,0,192,0,-1--1--1,,1|(1855,246)|
+1,40,32,31,1,0,0,0,0,192,0,-1--1--1,,1|(1284,424)|
+1,41,33,27,1,0,0,0,0,192,0,-1--1--1,,1|(1506,434)|
+1,42,34,28,1,0,0,0,0,192,0,-1--1--1,,1|(1631,436)|
+1,43,35,29,1,0,0,0,0,192,0,-1--1--1,,1|(1848,422)|
+10,44,BC total cost results,2504,241,56,22,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||251-2-7,0,0,0,0,0,0
+10,45,Mammography cost 0,2294,353,46,16,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,46,Biopsy cost 0,2631,342,39,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,47,45,44,1,0,0,0,0,192,0,-1--1--1,,1|(2297,211)|
+1,48,46,44,1,0,0,0,0,192,0,-1--1--1,,1|(2650,256)|
+10,49,Mammography,2298,463,52,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,50,"Biopsy & histological assessment BC",2656,454,47,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,51,49,45,1,0,0,0,0,192,0,-1--1--1,,1|(2192,392)|
+1,52,50,46,1,0,0,0,0,192,0,-1--1--1,,1|(2553,387)|
+10,53,"Follow-up cost BC 0",2477,354,57,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,54,53,44,1,0,0,0,0,192,0,-1--1--1,,1|(2426,272)|
+10,55,"Short-term follow-up 6mths",2470,462,52,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,56,55,53,1,0,0,0,0,192,0,-1--1--1,,1|(2374,386)|
+10,57,CC total cost results,956,801,56,22,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||251-2-7,0,0,0,0,0,0
+10,58,HPV cost 0,584,899,32,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,59,Reflex LBC cost 0,766,899,50,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,60,Clinician cost CC 0,958,908,53,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,61,Colposcopy cost 0,1163,895,52,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,62,Tissue biopsy CC cost 0,1359,912,49,16,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,63,58,57,1,0,0,0,0,192,0,-1--1--1,,1|(652,797)|
+1,64,59,57,1,0,0,0,0,192,0,-1--1--1,,1|(786,823)|
+1,65,60,57,1,0,0,0,0,192,0,-1--1--1,,1|(928,848)|
+1,66,61,57,1,0,0,0,0,192,0,-1--1--1,,1|(1138,802)|
+1,67,62,57,1,0,0,0,0,192,0,-1--1--1,,1|(1279,790)|
+10,68,Total cost of MCED testing results,2058,825,56,23,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||251-2-7,0,0,0,0,0,0
+10,69,LC MCED testing 0,1704,926,53,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,70,CRC MCED testing 0,1840,931,57,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,71,BC MCED testing 0,2008,937,54,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,72,CC MCED testing 0,2155,933,54,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,73,Ineligible pop MCED testing 0,2308,928,45,16,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,74,Specialist visit due MCED 0,2489,920,54,16,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,75,69,68,1,0,0,0,0,192,0,-1--1--1,,1|(1715,837)|
+1,76,70,68,1,0,0,0,0,192,0,-1--1--1,,1|(1832,828)|
+1,77,71,68,1,0,0,0,0,192,0,-1--1--1,,1|(1954,832)|
+1,78,72,68,1,0,0,0,0,192,0,-1--1--1,,1|(2198,829)|
+1,79,73,68,1,0,0,0,0,192,0,-1--1--1,,1|(2260,790)|
+1,80,74,68,1,0,0,0,0,192,0,-1--1--1,,1|(2390,749)|
+10,81,HPV with partial genotyping,587,982,51,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,82,81,58,1,0,0,0,0,192,0,-1--1--1,,1|(482,933)|
+10,83,Reflex LBC,784,974,39,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,84,Specialist for colposcopy,1164,986,42,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,85,Additional clinician visit,962,984,41,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,86,Histological assessment CC,1352,986,50,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,87,MCED test BC,2007,995,47,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,88,MCED test CC,2162,990,47,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,89,MCED test CRC,1856,997,51,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,90,MCED test LC,1722,990,47,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,91,"MCED test ineligible pop.",2325,1000,45,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,92,Specialist visit,2499,1001,48,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,93,83,59,1,0,0,0,0,192,0,-1--1--1,,1|(670,961)|
+1,94,85,60,1,0,0,0,0,192,0,-1--1--1,,1|(863,933)|
+1,95,84,61,1,0,0,0,0,192,0,-1--1--1,,1|(1075,913)|
+1,96,86,62,1,0,0,0,0,192,0,-1--1--1,,1|(1256,952)|
+1,97,90,69,1,0,0,0,0,192,0,-1--1--1,,1|(1633,930)|
+1,98,89,70,1,0,0,0,0,192,0,-1--1--1,,1|(1782,956)|
+1,99,87,71,1,0,0,0,0,192,0,-1--1--1,,1|(1925,970)|
+1,100,88,72,1,0,0,0,0,192,0,-1--1--1,,1|(2086,962)|
+1,101,91,73,1,0,0,0,0,192,0,-1--1--1,,1|(2232,964)|
+1,102,92,74,1,0,0,0,0,192,0,-1--1--1,,1|(2407,977)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Health outcomes results
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,2
+10,1,QALY gained results,1513,250,49,22,8,3,0,58,-1,0,0,0,-1--1--1,-1--1--1,Helvetica|14||34-159-46,0,0,0,0,0,0
+10,2,Stage I,1294,440,28,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,3,Stage II,1462,437,29,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,4,Stage III,1631,432,31,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,5,Stage IV,1796,430,31,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,6,Stage I QALY 0,1271,362,42,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Stage II QALY 0,1438,365,44,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Stage III QALY 0,1601,364,46,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,9,Stage IV QALY 0,1784,365,46,9,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,10,2,6,1,0,0,0,0,192,0,-1--1--1,,1|(1190,439)|
+1,11,3,7,1,0,0,0,0,192,0,-1--1--1,,1|(1350,410)|
+1,12,4,8,1,0,0,0,0,192,0,-1--1--1,,1|(1514,412)|
+1,13,5,9,1,0,0,0,0,192,0,-1--1--1,,1|(1692,424)|
+1,14,6,1,1,0,0,0,0,192,0,-1--1--1,,1|(1336,263)|
+1,15,7,1,1,0,0,0,0,192,0,-1--1--1,,1|(1427,310)|
+1,16,8,1,1,0,0,0,0,192,0,-1--1--1,,1|(1606,324)|
+1,17,9,1,1,0,0,0,0,192,0,-1--1--1,,1|(1689,256)|
+10,18,"5-year stage I survival",406,378,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,"5-year stage II survival",574,381,52,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,"5-year stage III survival",748,378,52,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,21,"5-year stage IV survival",908,377,52,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,22,Total OS,644,258,42,22,8,3,0,2,-1,0,0,0,-1--1--1,-1--1--1,|||38-136-26,0,0,0,0,0,0
+10,23,Stage I combined results,394,476,35,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,24,Stage II combined results,564,470,40,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,25,Stage III combined results,753,466,44,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,26,Stage IV combined results,909,472,40,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,27,23,18,1,0,0,0,0,192,0,-1--1--1,,1|(324,474)|
+1,28,24,19,1,0,0,0,0,192,0,-1--1--1,,1|(479,410)|
+1,29,25,20,1,0,0,0,0,192,0,-1--1--1,,1|(662,429)|
+1,30,26,21,1,0,0,0,0,192,0,-1--1--1,,1|(814,441)|
+1,31,18,22,1,0,0,0,0,192,0,-1--1--1,,1|(428,279)|
+1,32,19,22,1,0,0,0,0,192,0,-1--1--1,,1|(553,307)|
+1,33,20,22,1,0,0,0,0,192,0,-1--1--1,,1|(763,300)|
+1,34,21,22,1,0,0,0,0,192,0,-1--1--1,,1|(871,280)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Cost per QALY
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,2
+10,1,Cost per QALY,587,215,56,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,BC total cost results,402,312,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,3,CC total cost results,416,388,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,4,CRC total cost results,426,434,56,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,5,Total LC cost results,423,487,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,6,Total cost of MCED testing results,431,577,61,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,7,QALY gained results,638,345,52,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,8,2,1,1,0,0,0,0,192,0,-1--1--1,,1|(399,162)|
+1,9,3,1,1,0,0,0,0,192,0,-1--1--1,,1|(307,268)|
+1,10,4,1,1,0,0,0,0,192,0,-1--1--1,,1|(275,343)|
+1,11,5,1,1,0,0,0,0,192,0,-1--1--1,,1|(226,389)|
+1,12,6,1,1,0,0,0,0,192,0,-1--1--1,,1|(147,472)|
+1,13,7,1,1,0,0,0,0,192,0,-1--1--1,,1|(750,255)|
+///---\\\
+:GRAPH Cancer_diagnosis_by_stag
+:TITLE Cancer diagnosis by stage
+:SCALE
+:VAR Stage I
+:DATASET *1
+:VAR Stage II
+:DATASET *1
+:VAR Stage III
+:DATASET *1
+:VAR Stage IV
+:DATASET *1
+:L<%^E!@
+4:Time
+5:MCED ineligible uptake
+9:Base
+19:68,0
+24:0
+25:10
+26:10
+23:0
+15:0,0,0,0,0,0
+27:0,
+34:6,
+42:1
+72:0
+73:0
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:1
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
+105:0,0,0,0,0,0,0,0,0,0
+104:Courier|12||0-0-0|0-0-0|-1--1--1|0-0-255|192-192-192|-1--1--1
